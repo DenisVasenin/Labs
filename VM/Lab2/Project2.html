@@ -1,0 +1,413 @@
+<html>
+
+<head>
+<style type="text/css">
+.knitr .inline {
+  background-color: #f7f7f7;
+  border:solid 1px #B0B0B0;
+}
+.error {
+	font-weight: bold;
+	color: #FF0000;
+}
+.warning {
+	font-weight: bold;
+}
+.message {
+	font-style: italic;
+}
+.source, .output, .warning, .error, .message {
+	padding: 0 1em;
+  border:solid 1px #F7F7F7;
+}
+.source {
+  background-color: #f5f5f5;
+}
+.rimage .left {
+  text-align: left;
+}
+.rimage .right {
+  text-align: right;
+}
+.rimage .center {
+  text-align: center;
+}
+.hl.num {
+  color: #AF0F91;
+}
+.hl.str {
+  color: #317ECC;
+}
+.hl.com {
+  color: #AD95AF;
+  font-style: italic;
+}
+.hl.opt {
+  color: #000000;
+}
+.hl.std {
+  color: #585858;
+}
+.hl.kwa {
+  color: #295F94;
+  font-weight: bold;
+}
+.hl.kwb {
+  color: #B05A65;
+}
+.hl.kwc {
+  color: #55aa55;
+}
+.hl.kwd {
+  color: #BC5A65;
+  font-weight: bold;
+}
+</style>
+<title>Lab2</title>
+</head>
+
+<body>
+
+
+
+
+<h3 align="center">ОТЧЕТ ПО ЛАБОРАТОРНОЙ РАБОТЕ №2</h3>
+
+<h4 align="center">РЕШЕНИЕ СИСТЕМЫ УРАВНЕНИЙ</h4>
+
+<p align="center">студент Пенкин Станислав Вячеславович</p>
+
+<p align="center">Вариант 21</p>
+
+
+
+
+
+<br><br><br>
+
+
+
+
+
+<p align="center">ИСХОДНЫЕ ДАННЫЕ:</p>
+
+<p>ФИКСИРОВАННЫЕ ПАРАМЕТРЫ:</p>
+
+<div class="chunk" id="unnamed-chunk-2"><div class="rcode"><div class="source"><pre class="knitr r">  <span class="hl std">epsX</span> <span class="hl kwb">=</span> <span class="hl num">0.1</span> <span class="hl com"># допустимая погрешность по невязке(отклонение от пункта назначения)</span>
+  <span class="hl std">nticks</span> <span class="hl kwb">=</span> <span class="hl num">100</span> <span class="hl com"># максимум итераций </span>
+</pre></div>
+</div></div>
+
+<p>ПАРАМЕТРЫ ВАРИАНТА:</p>
+
+<div class="chunk" id="unnamed-chunk-3"><div class="rcode"><div class="source"><pre class="knitr r">  <span class="hl std">x0</span> <span class="hl kwb">=</span> <span class="hl num">0</span> <span class="hl com"># координата х начального расположения робота</span>
+  <span class="hl std">y0</span> <span class="hl kwb">=</span> <span class="hl num">1</span> <span class="hl com"># координата y начального расположения робота</span>
+  <span class="hl std">fi0</span> <span class="hl kwb">=</span> <span class="hl opt">-</span><span class="hl num">1</span> <span class="hl com"># начальный азимутальный угол направления движения робота</span>
+  <span class="hl std">Apar</span> <span class="hl kwb">=</span> <span class="hl num">2</span> <span class="hl com"># параметра А</span>
+  <span class="hl std">Bpar</span> <span class="hl kwb">=</span> <span class="hl opt">-</span><span class="hl num">0.5</span> <span class="hl com"># параметр B</span>
+  <span class="hl std">Cpar</span> <span class="hl kwb">=</span> <span class="hl num">4.25</span> <span class="hl com"># параметр C</span>
+</pre></div>
+</div></div>
+
+<p>ПОДБИРАЕМЫЕ ПАРАМЕТРЫ:</p>
+
+<div class="chunk" id="unnamed-chunk-4"><div class="rcode"><div class="source"><pre class="knitr r">  <span class="hl std">kV</span> <span class="hl kwb">=</span> <span class="hl num">0.5</span> <span class="hl com"># коэф. пропорцинального регулятора линейной скорости</span>
+  <span class="hl std">kW</span> <span class="hl kwb">=</span> <span class="hl num">2</span> <span class="hl com"># коэф. пропорционального регулятора угловой скорости</span>
+  <span class="hl std">alfa</span> <span class="hl kwb">=</span> <span class="hl num">0.5</span> <span class="hl com"># коэф. альфа обеспечения сходимости (коэф. итерационного шага)</span>
+  <span class="hl std">beta</span> <span class="hl kwb">=</span> <span class="hl num">0.5</span> <span class="hl com"># коэф. бета для расчета kV</span>
+</pre></div>
+</div></div>
+
+<p>ВСПОМОГАТЕЛЬНЫЕ ПРОГРАММЫ:</p>
+
+<p>расчет полярного угла радиус вектора с координатами (x,y)</p>
+
+<div class="chunk" id="unnamed-chunk-5"><div class="rcode"><div class="source"><pre class="knitr r">  <span class="hl std">Angle</span> <span class="hl kwb">=</span> <span class="hl kwa">function</span><span class="hl std">(</span><span class="hl kwc">x</span><span class="hl std">,</span> <span class="hl kwc">y</span><span class="hl std">) {</span>
+    <span class="hl kwd">atan2</span><span class="hl std">(y, x)</span>
+  <span class="hl std">}</span>
+</pre></div>
+</div></div>
+
+<p>нормирование угла: -pi <= fi <= pi</p>
+
+<div class="chunk" id="unnamed-chunk-6"><div class="rcode"><div class="source"><pre class="knitr r">  <span class="hl std">normAngle</span> <span class="hl kwb">=</span> <span class="hl kwa">function</span><span class="hl std">(</span><span class="hl kwc">fi</span><span class="hl std">) {</span>
+    <span class="hl kwa">while</span> <span class="hl std">(</span><span class="hl kwd">abs</span><span class="hl std">(fi)</span> <span class="hl opt">&gt;</span> <span class="hl std">pi) fi</span> <span class="hl kwb">=</span> <span class="hl std">fi</span> <span class="hl opt">-</span> <span class="hl num">2</span> <span class="hl opt">*</span> <span class="hl std">pi</span> <span class="hl opt">*</span> <span class="hl kwd">sign</span><span class="hl std">(fi)</span>
+    <span class="hl std">fi</span>
+  <span class="hl std">}</span>
+</pre></div>
+</div></div>
+
+<p>расчет ошибки в направлении движения робота как расхождение между 
+полярным углом на цель и текущим азимутальным углом движения робота</p>
+
+<div class="chunk" id="unnamed-chunk-7"><div class="rcode"><div class="source"><pre class="knitr r">  <span class="hl std">epsfi</span> <span class="hl kwb">=</span> <span class="hl kwa">function</span><span class="hl std">(</span><span class="hl kwc">S</span><span class="hl std">,</span> <span class="hl kwc">ABC</span><span class="hl std">) {</span>
+    <span class="hl std">x</span> <span class="hl kwb">=</span> <span class="hl std">S[</span><span class="hl num">1</span><span class="hl std">]</span>
+    <span class="hl std">y</span> <span class="hl kwb">=</span> <span class="hl std">S[</span><span class="hl num">2</span><span class="hl std">]</span>
+    <span class="hl std">fi</span> <span class="hl kwb">=</span> <span class="hl std">S[</span><span class="hl num">3</span><span class="hl std">]</span>
+    <span class="hl std">A</span> <span class="hl kwb">=</span> <span class="hl std">ABC[</span><span class="hl num">1</span><span class="hl std">]</span>
+    <span class="hl std">B</span> <span class="hl kwb">=</span> <span class="hl std">ABC[</span><span class="hl num">2</span><span class="hl std">]</span>
+    <span class="hl kwd">normAngle</span><span class="hl std">(</span><span class="hl kwd">Angle</span><span class="hl std">(</span><span class="hl opt">-</span><span class="hl std">A</span> <span class="hl opt">-</span> <span class="hl std">x,</span> <span class="hl opt">-</span><span class="hl std">B</span> <span class="hl opt">-</span> <span class="hl std">y)</span> <span class="hl opt">-</span> <span class="hl std">fi)</span>
+  <span class="hl std">}</span>
+</pre></div>
+</div></div>
+
+<p>расчет ошибки расположения робота как расхождение между 
+целевой точкой и текущим положением робота</p>
+
+<div class="chunk" id="unnamed-chunk-8"><div class="rcode"><div class="source"><pre class="knitr r">  <span class="hl std">epsR</span> <span class="hl kwb">=</span> <span class="hl kwa">function</span><span class="hl std">(</span><span class="hl kwc">S</span><span class="hl std">,</span> <span class="hl kwc">ABC</span><span class="hl std">) {</span>
+    <span class="hl std">x</span> <span class="hl kwb">=</span> <span class="hl std">S[</span><span class="hl num">1</span><span class="hl std">]</span>
+    <span class="hl std">y</span> <span class="hl kwb">=</span> <span class="hl std">S[</span><span class="hl num">2</span><span class="hl std">]</span>
+    <span class="hl std">A</span> <span class="hl kwb">=</span> <span class="hl std">ABC[</span><span class="hl num">1</span><span class="hl std">]</span>
+    <span class="hl std">B</span> <span class="hl kwb">=</span> <span class="hl std">ABC[</span><span class="hl num">2</span><span class="hl std">]</span>
+    <span class="hl std">C</span> <span class="hl kwb">=</span> <span class="hl std">ABC[</span><span class="hl num">3</span><span class="hl std">]</span>
+    <span class="hl kwd">sqrt</span><span class="hl std">(x</span> <span class="hl opt">*</span> <span class="hl std">x</span> <span class="hl opt">+</span> <span class="hl std">y</span> <span class="hl opt">*</span> <span class="hl std">y</span> <span class="hl opt">+</span> <span class="hl num">2</span> <span class="hl opt">*</span> <span class="hl std">A</span> <span class="hl opt">*</span> <span class="hl std">x</span> <span class="hl opt">+</span> <span class="hl num">2</span> <span class="hl opt">*</span> <span class="hl std">B</span> <span class="hl opt">*</span> <span class="hl std">y</span> <span class="hl opt">+</span> <span class="hl std">C)</span>
+  <span class="hl std">}</span>
+</pre></div>
+</div></div>
+
+<p>расчет константы снижения скорости при несоответствии направления движения
+b0 - коэффициент снижения скорости при движении робота в противолположную сторону 
+при удалении от цели</p>
+
+<div class="chunk" id="unnamed-chunk-9"><div class="rcode"><div class="source"><pre class="knitr r">  <span class="hl std">kB</span> <span class="hl kwb">=</span> <span class="hl kwa">function</span><span class="hl std">(</span><span class="hl kwc">S</span><span class="hl std">,</span> <span class="hl kwc">ABCb</span><span class="hl std">) {</span>
+    <span class="hl std">b0</span> <span class="hl kwb">=</span> <span class="hl std">ABCb[</span><span class="hl num">4</span><span class="hl std">]</span>
+    <span class="hl std">b0</span> <span class="hl opt">+</span> <span class="hl kwd">abs</span><span class="hl std">(pi</span> <span class="hl opt">-</span> <span class="hl kwd">epsfi</span><span class="hl std">(S, ABCb))</span> <span class="hl opt">/</span> <span class="hl std">pi</span>
+  <span class="hl std">}</span>
+</pre></div>
+</div></div>
+
+<p>расчет квадратической нормы вектора</p>
+
+<div class="chunk" id="unnamed-chunk-10"><div class="rcode"><div class="source"><pre class="knitr r">  <span class="hl std">vnorm2</span> <span class="hl kwb">=</span> <span class="hl kwa">function</span><span class="hl std">(</span><span class="hl kwc">v</span><span class="hl std">) {</span>
+    <span class="hl kwd">sqrt</span><span class="hl std">(</span><span class="hl kwd">sum</span><span class="hl std">(v</span> <span class="hl opt">*</span> <span class="hl std">v))</span>
+  <span class="hl std">}</span>
+</pre></div>
+</div></div>
+
+<p>функция невязки</p>
+
+<div class="chunk" id="unnamed-chunk-11"><div class="rcode"><div class="source"><pre class="knitr r">  <span class="hl std">Fv</span> <span class="hl kwb">=</span> <span class="hl kwa">function</span><span class="hl std">(</span><span class="hl kwc">S</span><span class="hl std">,</span> <span class="hl kwc">ABCb</span><span class="hl std">) {</span>
+    <span class="hl std">fi</span> <span class="hl kwb">=</span> <span class="hl std">S[</span><span class="hl num">3</span><span class="hl std">]</span>
+    <span class="hl std">Fx</span> <span class="hl kwb">=</span> <span class="hl kwd">epsR</span><span class="hl std">(S, ABCb)</span> <span class="hl opt">*</span> <span class="hl kwd">kB</span><span class="hl std">(S, ABCb)</span> <span class="hl opt">*</span> <span class="hl kwd">cos</span><span class="hl std">(fi)</span>
+    <span class="hl std">Fy</span> <span class="hl kwb">=</span> <span class="hl kwd">epsR</span><span class="hl std">(S, ABCb)</span> <span class="hl opt">*</span> <span class="hl kwd">kB</span><span class="hl std">(S, ABCb)</span> <span class="hl opt">*</span> <span class="hl kwd">sin</span><span class="hl std">(fi)</span>
+    <span class="hl std">Ffi</span> <span class="hl kwb">=</span> <span class="hl kwd">epsfi</span><span class="hl std">(S, ABCb)</span>
+    <span class="hl kwd">c</span><span class="hl std">(Fx, Fy, Ffi)</span>
+  <span class="hl std">}</span>
+</pre></div>
+</div></div>
+
+<p>погрешность достижения цели</p>
+
+<div class="chunk" id="unnamed-chunk-12"><div class="rcode"><div class="source"><pre class="knitr r">  <span class="hl std">Fn</span> <span class="hl kwb">=</span> <span class="hl kwa">function</span><span class="hl std">(</span><span class="hl kwc">S</span><span class="hl std">,</span> <span class="hl kwc">ABCb</span><span class="hl std">) {</span>
+    <span class="hl kwa">if</span> <span class="hl std">(</span><span class="hl kwd">is.vector</span><span class="hl std">(S)) S</span> <span class="hl kwb">=</span> <span class="hl kwd">matrix</span><span class="hl std">(S,</span> <span class="hl kwd">length</span><span class="hl std">(S),</span> <span class="hl num">1</span><span class="hl std">)</span>
+    <span class="hl std">Fnorm</span> <span class="hl kwb">=</span> <span class="hl num">1</span><span class="hl opt">:</span><span class="hl kwd">ncol</span><span class="hl std">(S)</span>
+    <span class="hl kwa">for</span> <span class="hl std">(ic</span> <span class="hl kwa">in</span> <span class="hl num">1</span><span class="hl opt">:</span><span class="hl kwd">ncol</span><span class="hl std">(S)) Fnorm[ic]</span> <span class="hl kwb">=</span> <span class="hl kwd">vnorm2</span><span class="hl std">(</span><span class="hl kwd">Fv</span><span class="hl std">(S[,ic], ABCb)[</span><span class="hl num">1</span><span class="hl opt">:</span><span class="hl num">2</span><span class="hl std">])</span>
+    <span class="hl std">Fnorm</span>
+  <span class="hl std">}</span>
+</pre></div>
+</div></div>
+
+<p>программа расчета траектории движения робота:</p>
+
+<div class="chunk" id="unnamed-chunk-13"><div class="rcode"><div class="source"><pre class="knitr r">  <span class="hl std">Qfun</span> <span class="hl kwb">=</span> <span class="hl kwa">function</span><span class="hl std">(</span><span class="hl kwc">kV</span><span class="hl std">,</span> <span class="hl kwc">kw</span><span class="hl std">) {</span>
+    <span class="hl std">vm</span> <span class="hl kwb">=</span> <span class="hl kwd">c</span><span class="hl std">(kV,</span> <span class="hl num">0</span><span class="hl std">,</span> <span class="hl num">0</span><span class="hl std">,</span> <span class="hl num">0</span><span class="hl std">, kV,</span> <span class="hl num">0</span><span class="hl std">,</span> <span class="hl num">0</span><span class="hl std">,</span> <span class="hl num">0</span><span class="hl std">, kw)</span>
+    <span class="hl std">Qmat</span> <span class="hl kwb">=</span> <span class="hl kwd">matrix</span><span class="hl std">(vm,</span> <span class="hl num">3</span><span class="hl std">,</span> <span class="hl num">3</span><span class="hl std">)</span>
+  <span class="hl std">}</span>
+
+  <span class="hl std">iterMeth</span> <span class="hl kwb">=</span> <span class="hl kwa">function</span><span class="hl std">(</span><span class="hl kwc">x0</span><span class="hl std">,</span> <span class="hl kwc">kV</span><span class="hl std">,</span> <span class="hl kwc">kw</span><span class="hl std">,</span> <span class="hl kwc">alfa</span><span class="hl std">,</span> <span class="hl kwc">beta</span><span class="hl std">,</span> <span class="hl kwc">epsX</span><span class="hl std">,</span> <span class="hl kwc">maxIter</span><span class="hl std">) {</span>
+    <span class="hl std">xtr</span> <span class="hl kwb">=</span> <span class="hl kwd">matrix</span><span class="hl std">(x0,</span> <span class="hl kwd">length</span><span class="hl std">(x0),</span> <span class="hl num">1</span><span class="hl std">)</span>
+
+    <span class="hl kwa">while</span> <span class="hl std">(</span><span class="hl kwd">vnorm2</span><span class="hl std">(</span><span class="hl kwd">Fv</span><span class="hl std">(x0,</span> <span class="hl kwd">c</span><span class="hl std">(Apar, Bpar, Cpar, beta))[</span><span class="hl num">1</span><span class="hl opt">:</span><span class="hl num">2</span><span class="hl std">])</span> <span class="hl opt">&gt;</span> <span class="hl std">epsX</span> <span class="hl opt">&amp;</span> <span class="hl kwd">ncol</span><span class="hl std">(xtr)</span> <span class="hl opt">&lt;</span> <span class="hl std">maxIter) {</span>
+      <span class="hl std">F0</span> <span class="hl kwb">=</span> <span class="hl kwd">Fv</span><span class="hl std">(x0,</span> <span class="hl kwd">c</span><span class="hl std">(Apar, Bpar, Cpar, beta))</span>
+      <span class="hl std">x0</span> <span class="hl kwb">=</span> <span class="hl std">x0</span> <span class="hl opt">+</span> <span class="hl std">alfa</span> <span class="hl opt">*</span> <span class="hl kwd">Qfun</span><span class="hl std">(kV, kw)</span> <span class="hl opt">%*%</span> <span class="hl kwd">matrix</span><span class="hl std">(F0,</span> <span class="hl kwd">length</span><span class="hl std">(F0),</span> <span class="hl num">1</span><span class="hl std">)</span>
+      <span class="hl std">xtr</span> <span class="hl kwb">=</span> <span class="hl kwd">cbind</span><span class="hl std">(xtr, x0)</span>
+    <span class="hl std">}</span>
+    <span class="hl com">## возвращаем массив - в i-м столбце - i-е приближение</span>
+    <span class="hl std">xtr</span>
+  <span class="hl std">}</span>
+</pre></div>
+</div></div>
+
+<p>программа расчета последовательности отношения</p>
+
+<div class="chunk" id="unnamed-chunk-14"><div class="rcode"><div class="source"><pre class="knitr r">  <span class="hl std">getCCv</span> <span class="hl kwb">=</span> <span class="hl kwa">function</span><span class="hl std">(</span><span class="hl kwc">x</span><span class="hl std">,</span> <span class="hl kwc">xfin</span><span class="hl std">,</span> <span class="hl kwc">p</span><span class="hl std">) {</span>
+    <span class="hl kwa">if</span> <span class="hl std">(</span><span class="hl kwd">is.vector</span><span class="hl std">(x)) x</span> <span class="hl kwb">=</span> <span class="hl kwd">matrix</span><span class="hl std">(x,</span> <span class="hl num">1</span><span class="hl std">,</span> <span class="hl kwd">length</span><span class="hl std">(x))</span>
+    <span class="hl std">numv</span> <span class="hl kwb">=</span> <span class="hl kwd">ncol</span><span class="hl std">(x)</span>
+    <span class="hl std">cc</span> <span class="hl kwb">=</span> <span class="hl num">1</span><span class="hl opt">:</span><span class="hl std">numv</span>
+    <span class="hl std">istep</span> <span class="hl kwb">=</span> <span class="hl kwd">rep</span><span class="hl std">(</span><span class="hl num">1</span><span class="hl opt">:</span><span class="hl std">numv,</span> <span class="hl kwd">length</span><span class="hl std">(p))</span>
+    <span class="hl std">i</span> <span class="hl kwb">=</span> <span class="hl num">0</span>
+    <span class="hl std">pf</span> <span class="hl kwb">=</span> <span class="hl kwd">rep</span><span class="hl std">(p,</span> <span class="hl kwc">each</span> <span class="hl std">= numv)</span>
+    <span class="hl kwa">for</span> <span class="hl std">(ip</span> <span class="hl kwa">in</span> <span class="hl num">1</span><span class="hl opt">:</span><span class="hl kwd">length</span><span class="hl std">(p)) {</span>
+      <span class="hl std">i</span> <span class="hl kwb">=</span> <span class="hl std">i</span> <span class="hl opt">+</span> <span class="hl num">1</span>
+      <span class="hl kwa">for</span> <span class="hl std">(ix</span> <span class="hl kwa">in</span> <span class="hl num">2</span><span class="hl opt">:</span><span class="hl std">numv) {</span>
+        <span class="hl std">i</span> <span class="hl kwb">=</span> <span class="hl std">i</span> <span class="hl opt">+</span> <span class="hl num">1</span>
+        <span class="hl std">cc[i]</span> <span class="hl kwb">=</span> <span class="hl kwd">vnorm2</span><span class="hl std">(xfin</span> <span class="hl opt">-</span> <span class="hl std">x[,ix])</span> <span class="hl opt">/</span> <span class="hl kwd">vnorm2</span><span class="hl std">(xfin</span> <span class="hl opt">-</span> <span class="hl std">x[,ix</span> <span class="hl opt">-</span> <span class="hl num">1</span><span class="hl std">])</span> <span class="hl opt">^</span> <span class="hl std">pf[i]</span>
+      <span class="hl std">}</span>
+    <span class="hl std">}</span>
+    <span class="hl com">## необходимо вернуть data.frame - в 1-м столбце - вектор времен, во 2-м - вектор скоростей </span>
+    <span class="hl kwd">data.frame</span><span class="hl std">(istep, cc, pf)</span>
+  <span class="hl std">}</span>
+</pre></div>
+</div></div>
+
+
+
+
+
+<br><br><br>
+
+
+
+
+
+<p align="center">1.АНАЛИЗ РАБОТЫ ПИ-РЕГУЛЯТОРА ПРИ ЗАДАННЫХ ЗНАЧЕНИЯХ.</p>
+
+<p>РАСЧЕТ ТРАЕКТОРИИ ПРИ ЗАДАННЫХ ЗНАЧЕНИЯХ ПАРАМЕТРОВ:</p>
+
+<div class="chunk" id="unnamed-chunk-15"><div class="rcode"><div class="source"><pre class="knitr r">  <span class="hl std">s0</span> <span class="hl kwb">=</span> <span class="hl kwd">c</span><span class="hl std">(x0, y0, fi0)</span>
+  <span class="hl std">xtr</span> <span class="hl kwb">=</span> <span class="hl kwd">iterMeth</span><span class="hl std">(s0, kV, kW, alfa, beta, epsX, nticks)</span>
+  <span class="hl std">xtr</span>
+</pre></div>
+<div class="output"><pre class="knitr r">##      [,1]        [,2]       [,3]        [,4]        [,5]      [,6]
+## [1,]    0  0.58581079 -0.4482913 -1.10753214 -1.48335906 -1.695244
+## [2,]    1  0.08765375 -0.1708718 -0.06574595  0.09674052  0.231057
+## [3,]   -1 -2.89661399 -3.2997262 -3.54966716 -3.70657484 -3.804355
+##            [,7]       [,8]       [,9]      [,10]
+## [1,] -1.8169342 -1.8884952 -1.9314311 -1.9575717
+## [2,]  0.3260411  0.3891927  0.4299927  0.4559698
+## [3,] -3.8646473 -3.9014887 -3.9238533 -3.9373703
+</pre></div>
+</div></div>
+
+<p>РАСЧЕТ И ВЫВОД ГРАФИКА ИЗМЕНЕНИЯ НЕВЯЗКИ:</p>
+
+<div class="chunk" id="unnamed-chunk-16"><div class="rcode"><div class="source"><pre class="knitr r">  <span class="hl std">ind</span> <span class="hl kwb">=</span> <span class="hl num">1</span><span class="hl opt">:</span><span class="hl kwd">ncol</span><span class="hl std">(xtr)</span>
+  <span class="hl std">res</span> <span class="hl kwb">=</span> <span class="hl kwd">data.frame</span><span class="hl std">(</span><span class="hl kwc">iter</span> <span class="hl std">= ind,</span> <span class="hl kwc">epsX</span> <span class="hl std">=</span> <span class="hl kwd">Fn</span><span class="hl std">(xtr,</span><span class="hl kwd">c</span><span class="hl std">(Apar, Bpar, Cpar, beta)))</span>
+  <span class="hl kwd">plot</span><span class="hl std">(res,</span> <span class="hl kwc">main</span> <span class="hl std">=</span> <span class="hl kwd">paste</span><span class="hl std">(</span><span class="hl str">&quot;Изменение погрешности с ростом итераций при kV, kW, alfa=&quot;</span><span class="hl std">, kV, kW, alfa),</span>
+     <span class="hl kwc">type</span> <span class="hl std">=</span> <span class="hl str">&quot;l&quot;</span><span class="hl std">,</span> <span class="hl kwc">xlab</span> <span class="hl std">=</span> <span class="hl str">&quot;номер итерации&quot;</span><span class="hl std">,</span> <span class="hl kwc">ylab</span> <span class="hl std">=</span> <span class="hl str">&quot;погрешность&quot;</span><span class="hl std">)</span>
+  <span class="hl kwd">abline</span><span class="hl std">(</span><span class="hl kwc">h</span> <span class="hl std">= epsX,</span> <span class="hl kwc">lwd</span> <span class="hl std">=</span> <span class="hl num">2</span><span class="hl std">,</span> <span class="hl kwc">col</span> <span class="hl std">=</span> <span class="hl str">&quot;red&quot;</span><span class="hl std">)</span>
+</pre></div>
+</div><div class="rimage default"><img src="figure/unnamed-chunk-16-1.png" title="plot of chunk unnamed-chunk-16" alt="plot of chunk unnamed-chunk-16" class="plot" /></div></div>
+
+<p>РАСЧЕТ ТРАЕКТОРИИ РОБОТА И ВЫВОД ГРАФИКА ДВИЖЕНИЯ:</p>
+
+<p>Для обеспечения плавности траектории выберем маленький шаг alfa</p>
+
+<div class="chunk" id="unnamed-chunk-17"><div class="rcode"><div class="source"><pre class="knitr r">  <span class="hl std">alfa</span> <span class="hl kwb">=</span> <span class="hl num">0.1</span>
+  <span class="hl std">xtr</span> <span class="hl kwb">=</span> <span class="hl kwd">iterMeth</span><span class="hl std">(s0, kV, kW, alfa, beta, epsX, nticks)</span>
+  <span class="hl std">res</span> <span class="hl kwb">=</span> <span class="hl kwd">data.frame</span><span class="hl std">(</span><span class="hl kwc">x</span> <span class="hl std">= xtr[</span><span class="hl num">1</span><span class="hl std">,],</span> <span class="hl kwc">y</span> <span class="hl std">= xtr[</span><span class="hl num">2</span><span class="hl std">,])</span>
+
+  <span class="hl kwd">plot</span><span class="hl std">(res,</span> <span class="hl kwc">main</span> <span class="hl std">=</span> <span class="hl str">&quot;Траектория движения робота&quot;</span><span class="hl std">,</span> <span class="hl kwc">type</span> <span class="hl std">=</span> <span class="hl str">&quot;l&quot;</span><span class="hl std">)</span>
+</pre></div>
+</div><div class="rimage default"><img src="figure/unnamed-chunk-17-1.png" title="plot of chunk unnamed-chunk-17" alt="plot of chunk unnamed-chunk-17" class="plot" /></div></div>
+
+<p>ИССЛЕДУЕМ ПОРЯДОК И СКОРОСТЬ СХОДИМОСТИ</p>
+
+<div class="chunk" id="unnamed-chunk-18"><div class="rcode"><div class="source"><pre class="knitr r">  <span class="hl std">xfin</span> <span class="hl kwb">=</span> <span class="hl std">xtr[,</span> <span class="hl kwd">ncol</span><span class="hl std">(xtr)]</span>
+  <span class="hl std">ccframe</span> <span class="hl kwb">=</span> <span class="hl kwd">getCCv</span><span class="hl std">(xtr, xfin,</span> <span class="hl kwd">c</span><span class="hl std">(</span><span class="hl num">1</span><span class="hl std">,</span> <span class="hl num">1.05</span><span class="hl std">,</span> <span class="hl num">1.1</span><span class="hl std">))</span>
+
+  <span class="hl kwd">qplot</span><span class="hl std">(istep, cc,</span> <span class="hl kwc">data</span> <span class="hl std">= ccframe,</span> <span class="hl kwc">main</span> <span class="hl std">=</span> <span class="hl str">&quot;Оценка порядка и скорости сходимости&quot;</span><span class="hl std">,</span> <span class="hl kwc">color</span> <span class="hl std">= pf)</span>
+</pre></div>
+<div class="warning"><pre class="knitr r">## Warning: Removed 2 rows containing missing values (geom_point).
+</pre></div>
+</div><div class="rimage default"><img src="figure/unnamed-chunk-18-1.png" title="plot of chunk unnamed-chunk-18" alt="plot of chunk unnamed-chunk-18" class="plot" /></div><div class="rcode">
+<div class="source"><pre class="knitr r">  <span class="hl std">order</span> <span class="hl kwb">=</span> <span class="hl num">1.0</span>
+  <span class="hl std">ccframe</span> <span class="hl kwb">=</span> <span class="hl kwd">getCCv</span><span class="hl std">(xtr, xfin,</span> <span class="hl kwd">c</span><span class="hl std">(order))</span>
+  <span class="hl std">velocity</span> <span class="hl kwb">=</span> <span class="hl num">1</span> <span class="hl opt">/</span> <span class="hl kwd">mean</span><span class="hl std">(ccframe</span><span class="hl opt">$</span><span class="hl std">cc)</span>
+  <span class="hl kwd">print</span><span class="hl std">(velocity)</span>
+</pre></div>
+<div class="output"><pre class="knitr r">## [1] 1.156984
+</pre></div>
+</div></div>
+
+<p>ВЫВОД №1:</p>
+<p>При заданных значениях констант kV=0.5, kW= 2, alfa = 0.5 находим решение с заданной точностью за 10 итераций. Система сходится с порядком сходимост p = 1 и со скоростью сходимости velocity = 1.156984</p>
+
+
+
+
+
+<br><br><br>
+
+
+
+
+
+<p align="center">2.ПОИСК КВАЗИОПТИМАЛЬНЫХ ПАРАМЕТРОВ</p>
+
+<p>РАСЧЕТ ТРАЕКТОРИИ ПРИ ВЫБРАННЫХ ЗНАЧЕНИЯХ ПАРАМЕТРОВ:</p>
+
+<p>выберем новые параметры:</p>
+
+<div class="chunk" id="unnamed-chunk-19"><div class="rcode"><div class="source"><pre class="knitr r">  <span class="hl std">kV</span> <span class="hl kwb">=</span> <span class="hl num">0.5</span>
+  <span class="hl std">kW</span> <span class="hl kwb">=</span> <span class="hl num">2</span>
+  <span class="hl std">alfa</span> <span class="hl kwb">=</span> <span class="hl num">0.8</span>
+
+  <span class="hl std">s0</span> <span class="hl kwb">=</span> <span class="hl kwd">c</span><span class="hl std">(x0, y0, fi0)</span>
+  <span class="hl std">xtr</span> <span class="hl kwb">=</span> <span class="hl kwd">iterMeth</span><span class="hl std">(s0, kV, kW, alfa, beta, epsX, nticks)</span>
+  <span class="hl std">xtr</span>
+</pre></div>
+<div class="output"><pre class="knitr r">##      [,1]       [,2]        [,3]       [,4]       [,5]       [,6]
+## [1,]    0  0.9372973 -0.08296126 -1.2155790 -1.6899361 -1.8796888
+## [2,]    1 -0.4597540  0.80758484  0.7730344  0.6588351  0.5799077
+## [3,]   -1 -4.0345824 -3.11109718 -2.9053428 -2.7474137 -2.6206412
+##            [,7]
+## [1,] -1.9538094
+## [2,]  0.5373754
+## [3,] -2.5161224
+</pre></div>
+</div></div>
+
+<p>РАСЧЕТ И ВЫВОД ГРАФИКА ИЗМЕНЕНИЯ НЕВЯЗКИ:</p>
+
+<div class="chunk" id="unnamed-chunk-20"><div class="rcode"><div class="source"><pre class="knitr r">  <span class="hl std">ind</span> <span class="hl kwb">=</span> <span class="hl num">1</span><span class="hl opt">:</span><span class="hl kwd">ncol</span><span class="hl std">(xtr)</span>
+  <span class="hl std">res</span> <span class="hl kwb">=</span> <span class="hl kwd">data.frame</span><span class="hl std">(</span><span class="hl kwc">iter</span> <span class="hl std">= ind,</span> <span class="hl kwc">epsX</span> <span class="hl std">=</span> <span class="hl kwd">Fn</span><span class="hl std">(xtr,</span><span class="hl kwd">c</span><span class="hl std">(Apar, Bpar, Cpar, beta)))</span>
+  <span class="hl kwd">plot</span><span class="hl std">(res,</span> <span class="hl kwc">main</span> <span class="hl std">=</span> <span class="hl kwd">paste</span><span class="hl std">(</span><span class="hl str">&quot;Изменение погрешности с ростом итераций при kV, kW, alfa=&quot;</span><span class="hl std">, kV, kW, alfa),</span>
+     <span class="hl kwc">type</span> <span class="hl std">=</span> <span class="hl str">&quot;l&quot;</span><span class="hl std">,</span> <span class="hl kwc">xlab</span> <span class="hl std">=</span> <span class="hl str">&quot;номер итерации&quot;</span><span class="hl std">,</span> <span class="hl kwc">ylab</span> <span class="hl std">=</span> <span class="hl str">&quot;погрешность&quot;</span><span class="hl std">)</span>
+  <span class="hl kwd">abline</span><span class="hl std">(</span><span class="hl kwc">h</span> <span class="hl std">= epsX,</span> <span class="hl kwc">lwd</span> <span class="hl std">=</span> <span class="hl num">2</span><span class="hl std">,</span> <span class="hl kwc">col</span> <span class="hl std">=</span> <span class="hl str">&quot;red&quot;</span><span class="hl std">)</span>
+</pre></div>
+</div><div class="rimage default"><img src="figure/unnamed-chunk-20-1.png" title="plot of chunk unnamed-chunk-20" alt="plot of chunk unnamed-chunk-20" class="plot" /></div></div>
+
+<p>РАСЧЕТ ТРАЕКТОРИИ РОБОТА И ВЫВОД ГРАФИКА ДВИЖЕНИЯ:</p>
+
+<p>Для обеспечения плавности траектории выберем маленький шаг alfa</p>
+
+<div class="chunk" id="unnamed-chunk-21"><div class="rcode"><div class="source"><pre class="knitr r">  <span class="hl std">alfa</span> <span class="hl kwb">=</span> <span class="hl num">0.1</span>
+  <span class="hl std">xtr</span> <span class="hl kwb">=</span> <span class="hl kwd">iterMeth</span><span class="hl std">(s0, kV, kW, alfa, beta, epsX, nticks)</span>
+  <span class="hl std">res</span> <span class="hl kwb">=</span> <span class="hl kwd">data.frame</span><span class="hl std">(</span><span class="hl kwc">x</span> <span class="hl std">= xtr[</span><span class="hl num">1</span><span class="hl std">,],</span> <span class="hl kwc">y</span> <span class="hl std">= xtr[</span><span class="hl num">2</span><span class="hl std">,])</span>
+
+  <span class="hl kwd">plot</span><span class="hl std">(res,</span> <span class="hl kwc">main</span> <span class="hl std">=</span> <span class="hl str">&quot;Траектория движения робота&quot;</span><span class="hl std">,</span> <span class="hl kwc">type</span> <span class="hl std">=</span> <span class="hl str">&quot;l&quot;</span><span class="hl std">)</span>
+</pre></div>
+</div><div class="rimage default"><img src="figure/unnamed-chunk-21-1.png" title="plot of chunk unnamed-chunk-21" alt="plot of chunk unnamed-chunk-21" class="plot" /></div></div>
+
+<p>ИССЛЕДУЕМ ПОРЯДОК И СКОРОСТЬ СХОДИМОСТИ</p>
+
+<div class="chunk" id="unnamed-chunk-22"><div class="rcode"><div class="source"><pre class="knitr r">  <span class="hl std">xfin</span> <span class="hl kwb">=</span> <span class="hl std">xtr[,</span> <span class="hl kwd">ncol</span><span class="hl std">(xtr)]</span>
+  <span class="hl std">ccframe</span> <span class="hl kwb">=</span> <span class="hl kwd">getCCv</span><span class="hl std">(xtr, xfin,</span> <span class="hl kwd">c</span><span class="hl std">(</span><span class="hl num">1</span><span class="hl std">,</span> <span class="hl num">1.05</span><span class="hl std">,</span> <span class="hl num">1.1</span><span class="hl std">))</span>
+
+  <span class="hl kwd">qplot</span><span class="hl std">(istep, cc,</span> <span class="hl kwc">data</span> <span class="hl std">= ccframe,</span> <span class="hl kwc">main</span> <span class="hl std">=</span> <span class="hl str">&quot;Оценка порядка и скорости сходимости&quot;</span><span class="hl std">,</span> <span class="hl kwc">color</span> <span class="hl std">= pf)</span>
+</pre></div>
+<div class="warning"><pre class="knitr r">## Warning: Removed 2 rows containing missing values (geom_point).
+</pre></div>
+</div><div class="rimage default"><img src="figure/unnamed-chunk-22-1.png" title="plot of chunk unnamed-chunk-22" alt="plot of chunk unnamed-chunk-22" class="plot" /></div><div class="rcode">
+<div class="source"><pre class="knitr r">  <span class="hl std">order</span> <span class="hl kwb">=</span> <span class="hl num">1.0</span>
+  <span class="hl std">ccframe</span> <span class="hl kwb">=</span> <span class="hl kwd">getCCv</span><span class="hl std">(xtr, xfin,</span> <span class="hl kwd">c</span><span class="hl std">(order))</span>
+  <span class="hl std">velocity</span> <span class="hl kwb">=</span> <span class="hl num">1</span> <span class="hl opt">/</span> <span class="hl kwd">mean</span><span class="hl std">(ccframe</span><span class="hl opt">$</span><span class="hl std">cc)</span>
+  <span class="hl kwd">print</span><span class="hl std">(velocity)</span>
+</pre></div>
+<div class="output"><pre class="knitr r">## [1] 1.156984
+</pre></div>
+</div></div>
+
+<p>ВЫВОД №2:</p>
+<p>При заданных значениях констант kV = 0.5, kW = 2, alfa = 0.8 находим решение с заданной точностью за 7 итераций, что быстрее, чем при заданных значениях констант. Система сходится с порядком сходимост p = 1 и со скоростью сходимости velocity = 1.156984</p>
+
+<p>
+Регулировка kV отвечает за шаг линейной скорости на итерации. Чем больше kV тем большее расстояние пройдет робот с заданной угловой скоростью. 
+Регулировка kw нужна для установки скорости поворота. Значение kW надо выбирать исходя из шага линейной скорости. 
+Регулировка alfa нужна для достижения нужной длины шага на итерации. Значение alfa надо выбирать исходя из значений kV и kW.
+</p>
+
+
+</body>
+</html>

@@ -1,0 +1,99 @@
+```{r setup, include=FALSE}
+library('tools')
+library('reshape2')
+library('plyr')
+
+# УСТАНОВКА ПУТЕЙ
+if (!file.exists("./data")) {
+    print(paste("Проверьте правильность пути."))
+    quit()
+}
+csv_path = "./data/keylog/"
+dtime_path = "./data/dtime/"
+res_path = "./data/result/"
+
+list_files = list.files(csv_path)
+users = data.frame(id = 1:length(list_files), user = list_files) 
+write.csv(users, file = "./data/result/users.csv", row.names = FALSE)
+
+# ОБРАБОТКА ФАЙЛОВ KEYLOG
+for (i in 1:length(list_files)) {
+    tryCatch({
+        file_path = paste(csv_path, list_files[i], sep = "")
+        frame_path = paste(dtime_path, 'dtime_', list_files[i], sep = "")
+        keylog = read.csv(file_path, colClasses = c("integer", "integer"), header = FALSE, sep = ",")
+        time_pres = keylog[,1]
+        key_pres = keylog[,2]
+        len_key_pres = nrow(keylog) 
+        dtime = data.frame(id = i, key1 = key_pres[1:(len_key_pres - 1)], key2 = key_pres[2:len_key_pres], dtime = time_pres[2:len_key_pres] - time_pres[1:(len_key_pres - 1)], stringsAsFactors = FALSE)
+        #uniq1 = !is.na(dtime$key1)
+        #uniq2 = !is.na(dtime$key2)
+        #dtime = dtime[uniq1 & uniq2,] 
+        dtime = dtime[dtime$dtime < 10000,]
+        dtime = dtime[dtime$dtime > 0,]
+        write.csv(dtime, file = frame_path, row.names = FALSE)
+    }, error = function(e){print(e)})
+}
+
+# ОБЬЕДИНЕНИЕ ФАЙЛОВ DTIME
+list_files = list.files(dtime_path)
+frame_path = paste(dtime_path, list_files[1], sep = "")
+result = read.csv(frame_path, header = TRUE, sep = ",")
+for (i in 2:length(list_files)) {
+    frame_path = paste(dtime_path, list_files[i], sep = "")
+    frame = read.csv(frame_path, header = TRUE, sep = ",")
+    result = merge.data.frame(result, frame, all = TRUE, sort = FALSE)
+}
+
+# Находим "mean + 3sigma"
+res_3sg = round(mean(result$dtime) + sd(result$dtime) * 3)
+# Убираем строки со значениями ">3sg"
+result = result[result$dtime < res_3sg,]
+# Получаем кол-во переходов для каждой клавиши
+ct_result = acast(result, key1 ~ key2, length, value.var = "dtime")
+
+# Получаем среднее время каждого перехода
+#cm_result = acast(result, key1 ~ key2, fun.aggregate = mean, fill = 0, value.var = "dtime")
+
+# АНАЛИЗИРУЕМ ДАННЫЕ ПО КАЖДОМУ ПОЛЬЗОВАТЕЛЮ ОТДЕЛЬНО
+c_users = max(unique(result$id))
+minTabFun = Vectorize(function(tab1, tab2) { min(tab1, tab2) }, c("tab1", "tab2"))
+
+#dt_list = list(1:c_users)
+#min_tab = ct_result
+
+# Будем исследовать только те переходы, которые встречаются у каждого пользователя
+for (i in 1:c_users) {
+     data_user = result[result$id == i,]
+     ct_user = acast(data_user, key1 ~ key2, length, value.var = "dtime")
+     #cm_user = acast(data_user, key1 ~ key2, mean, fill = 0, value.var = "dtime")
+     data_user = ct_result * 0
+     data_user[rownames(ct_user), colnames(ct_user)] = ct_user
+     min_tab = matrix(data = minTabFun(ct_result, data_user), nrow = nrow(ct_result))
+     #dt_list[[i]] = cm_user
+}
+# Уберем редковстречаемые переходы
+min_tab[min_tab < round(mean(min_tab))] = 0
+# Вытащим коды клавиш для таких переходов
+rownames(min_tab) = rownames(ct_result)
+colnames(min_tab) = colnames(ct_result)
+name_rows_cols = matrix(0, nrow = length(min_tab[min_tab > 0]), ncol = 2)
+i = 1
+for (r in 1:nrow(min_tab)) {
+    for (c in 1:ncol(min_tab)) {
+        if (min_tab[r, c] > 0) {
+            name_rows_cols[i, 1] = rownames(min_tab)[r]
+            name_rows_cols[i, 2] = colnames(min_tab)[c]
+            i = i + 1
+        }
+    }
+}
+
+rm(dtime, keylog, frame, key_pres, csv_path, file_path, frame_path, len_key_pres, list_files, res_3sg, time_pres, data_user, ct_user, r, i, c, ct_result)
+
+
+
+#write.csv(result, file = "./data/result/result.csv", row.names = FALSE)
+
+```
+

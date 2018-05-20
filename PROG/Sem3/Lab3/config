@@ -1,0 +1,6 @@
+# For manual input data use hand / other values or blank for auto.
+input_method=auto
+# Length of a list (30 by default). Should be greater than 2*N.
+len_list=10
+# Count numbers "N" for replace (3 by default).
+count_num=4

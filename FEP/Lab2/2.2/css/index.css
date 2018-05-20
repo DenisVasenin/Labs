@@ -1,0 +1,224 @@
+*
+{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: none;
+    text-decoration: none;
+    font-size: 14px;
+    color: #000000;
+}
+
+.main
+{
+    max-width: 1280px;
+    margin: auto;
+}
+
+.header
+{
+    top: 0;
+    min-width: 1280px;
+    height: 45px;
+    background: green;
+}
+
+.logo_wrapper
+{
+    float: left;
+    margin-left: 15px;
+}
+
+.volgatech_icon
+{
+    width: 40px;
+    height: 40px;
+}
+
+.search_wrapper
+{
+    height: 45px;
+    float: right;
+    margin-right: 15px;
+}
+
+.search
+{
+    height: 30px;
+    float: left;
+    margin-top: 8px;
+    text-align: center;
+}
+
+.main_wrapper
+{
+    margin-top: 3px;
+    min-width: 1280px;
+}
+
+.main_block
+{
+    display: inline-block;
+    float: left;
+    padding-left: 3px;
+    padding-right: 3px;
+    padding-bottom: 3px;
+}
+
+.left_wrapper
+{
+    width: 255px;
+    
+}
+
+.center_wrapper
+{
+    width: 580px;
+}
+
+.right_wrapper
+{
+    width: 426px;
+    float: right;
+}
+
+.photo_wrapper
+{
+    border: 1px solid black;
+    background: white;
+}
+
+.photo_image
+{
+    width: 240px;
+    height: 240px;
+}
+
+.content_wrapper
+{
+    background: white;
+    border: 1px solid black;
+    padding: 3px;
+}
+
+.button_wrapper
+{
+    margin-top: 3px;
+}
+
+.buttons
+{
+    padding: 2px;
+    margin-top: 1px;
+    background: green;
+    color: white;
+    text-align: center;
+}
+
+.main_title
+{
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    padding: 1px;
+}
+
+.about_student_wrapper
+{
+    padding: 1px;
+    background: white;
+}
+
+.about_text
+{
+    padding: 1px;
+}
+
+.course_wrapper
+{
+    margin-top: 1px;
+    background: white;
+}
+
+.course_block
+{
+    height: 100px;
+    margin: 1px;
+    border: 1px solid black;
+}
+
+.course_link
+{
+    position: relative;
+    display: block;
+    color: white;
+}
+
+.course_text
+{
+    position: absolute;
+    width: 566px;
+    height: 98px;
+    padding: 1px;
+    text-align: center;
+}
+
+.course_text > h1
+{
+    margin-top: 50px;
+    color: white;
+    word-wrap: normal;
+}
+
+.film_block
+{
+    height: 600px;
+    margin: 1px;
+    border: 1px solid black;
+    padding: 20px;
+}
+
+.footer
+{
+    display: inline-block;
+    width: 580px;
+    margin-left: 263px;
+}
+
+.footer_wrapper
+{
+    border: 1px solid black;
+    padding: 1px;
+    background: green;
+}
+
+.footer_link_wrapper
+{
+    display: inline-block;
+    width: 580px;
+}
+
+.footer_link_block
+{
+    min-width: 50%;
+    height: 100%;
+    float: left;
+}
+
+.footer_link
+{
+    color: white;
+    margin-left: 100px;
+}
+
+.copyright_wrapper
+{
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+}
+
+.copyright
+{
+    color: white;
+}

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Volgatech</title>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" type="image/x-icon" href="images/logo/volgatech_favicon.ico" />
+  <link rel="stylesheet" type="text/css" href="css/index.css" />
+  <link rel="stylesheet" type="text/css" href="css/fullcalendar.min.css" />
+  <link rel="stylesheet" type="text/css" href="css/fullcalendar_fix.css" />
+  <script src="calendar/lib/moment.min.js"></script>
+  <script src="calendar/lib/jquery.min.js"></script>
+  <script src="calendar/fullcalendar.min.js"></script>
+  <script src="calendar/locale-all.js"></script>
+  <script src="scripts/calendar.js"></script>
+</head>
+
+<body>
+  <div class="main">
+    <div class="header">
+      <div class="logo_wrapper">
+        <a href="https://www.volgatech.net/">
+          <img class="volgatech_icon" src="images/logo/volgatech_logo.png" alt="Volgatech"/>
+        </a>
+      </div>
+      <div class="search_wrapper">
+        <img class="search_icon" src="images/logo/search_logo.png" alt=""/>
+        <input class="search" type="search" placeholder="Поиск" />
+      </div>
+    </div>
+    <div class="main_wrapper">
+      <div class="center_wrapper main_block">
+        <div class="content_wrapper">
+          <h1 class="main_title">Пенкин Станислав Вячеславович</h1>
+          <div class="about_student_wrapper content_wrapper">
+            <p class="about_text"><strong>Факультет:</strong>
+              <a href="">ФИиВТ</a>
+            </p>
+            <p class="about_text"><strong>Направление:</strong>
+              <a href="">Информатика и вычислительная техника</a>
+            </p>
+            <p class="about_text"><strong>Профиль:</strong>
+              <a href="">Вычислительные машины, комплексы, системы и сети</a>
+            </p>
+            <p class="about_text"><strong>Курс:</strong>
+              <a href="">2</a>
+            </p>
+            <p class="about_text"><strong>Группа:</strong>
+              <a href="">ИВТ-21</a>
+            </p>
+          </div>
+          <div class="course_wrapper content_wrapper">
+            <h1 class="main_title">Курсы</h1>
+            <div class="courses_block">
+              <div class="course_block">
+                <a class="course_link" href="">
+                  <div class="course_text"><h1>Математика</h1></div>
+                  <img class="course_image" src="images/courses/mathematic_course_image.png" alt="" />
+                </a>
+              </div>
+              <div class="course_block">
+                <a class="course_link" href="">
+                  <div class="course_text"><h1>Физика</h1></div>
+                  <img class="course_image" src="images/courses/physics_course_image.png" alt="" />
+                </a>
+              </div>
+              <div class="course_block">
+                <a class="course_link" href="">
+                  <div class="course_text"><h1>Программирование</h1></div>
+                  <img class="course_image" src="images/courses/programming_course_image.png" alt="" />
+                </a>
+              </div>
+              <div class="course_block">
+                <a class="course_link" href="">
+                  <div class="course_text"><h1>Операционные системы и среды</h1></div>
+                  <img class="course_image" src="images/courses/oss_course_image.png" alt="" />
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="left_wrapper main_block">
+        <div class="content_wrapper">
+          <div class="photo_wrapper">
+            <img class="photo_image" src="images/photo/user_photo.png" alt="No photo"/>
+          </div>
+          <div class="button_wrapper">
+            <div class="friend_button buttons">
+              <a href=""><p>Добавить в друзья</p></a>
+            </div>
+            <div class="message_button buttons">
+              <a href=""><p>Сообщения</p></a>
+            </div>
+            <div class="conference_button buttons">
+              <a href=""><p>Конференции</p></a>
+            </div>
+            <div class="calendar_button buttons">
+              <a href=""><p>Календарь</p></a>
+            </div>
+            <div class="setting_button buttons">
+              <a href=""><p>Настройки</p></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="right_wrapper main_block">
+        <div class="content_wrapper">
+          <h1 class="main_title">Расписание</h1>
+          <div id="calendar"></div>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <div class="footer_wrapper">
+        <div class="footer_link_wrapper">
+          <div class="footer_link_block">
+            <a class="footer_link" href="https://www.volgatech.net/">Сайт университета</a><br/>
+          </div>
+          <div class="footer_link_block">
+            <a class="footer_link" href="">Поддержка</a>
+          </div>
+        </div>
+        <hr/>
+        <div class="copyright_wrapper">
+          <p class="copyright">@created by PSV 2017</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="scripts/scripts.js"></script>
+
+</body>
+
+</html>
+
+
+<!--
+
+1. Удалить неиспользуемые изображения.
+2. Поправить поведение даты.
+3. Поправить форматирование в файле fullcalendar_fix.css.
+
+-->

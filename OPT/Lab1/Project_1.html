@@ -1,0 +1,204 @@
+<html>
+
+<head>
+<style type="text/css">
+.knitr .inline {
+  background-color: #f7f7f7;
+  border:solid 1px #B0B0B0;
+}
+.error {
+	font-weight: bold;
+	color: #FF0000;
+}
+.warning {
+	font-weight: bold;
+}
+.message {
+	font-style: italic;
+}
+.source, .output, .warning, .error, .message {
+	padding: 0 1em;
+  border:solid 1px #F7F7F7;
+}
+.source {
+  background-color: #f5f5f5;
+}
+.rimage .left {
+  text-align: left;
+}
+.rimage .right {
+  text-align: right;
+}
+.rimage .center {
+  text-align: center;
+}
+.hl.num {
+  color: #AF0F91;
+}
+.hl.str {
+  color: #317ECC;
+}
+.hl.com {
+  color: #AD95AF;
+  font-style: italic;
+}
+.hl.opt {
+  color: #000000;
+}
+.hl.std {
+  color: #585858;
+}
+.hl.kwa {
+  color: #295F94;
+  font-weight: bold;
+}
+.hl.kwb {
+  color: #B05A65;
+}
+.hl.kwc {
+  color: #55aa55;
+}
+.hl.kwd {
+  color: #BC5A65;
+  font-weight: bold;
+}
+</style>
+  <title></title>
+  <meta charset="utf-8">
+</head>
+
+<body>
+
+
+
+<h2 text align = "center">Лабораторная работа №1.</h2>
+
+<h2 text align = "center">Одномерная оптимизация.</h2>
+
+<h4 text align = "center">Вариант 17</h4>
+
+<h3>Задание:</h3>
+<p>f(x,y) = x<sup>2</sup> + 10*y<sup>2</sup> - x*y - y
+<br> 
+r<sub>0</sub> = (x<sub>0</sub>, y<sub>0</sub>) ;
+<br>
+x<sub>0</sub> = -2 ; y<sub>0</sub> = 2
+<br><br>
+Определить направление спуска из начальной точки и найти вдоль этого направления 
+оптимум функции с точностью меньше, чем e = 0,001.</p>
+
+<h3>Контурный график функции:</h3>
+
+<p>Как видно из графика - минимум находится в районе точки r<sub>1</sub>=(0, 0).
+<br>
+За направление спуска возьмем вектор r<sub>0</sub>r<sub>1</sub>.
+</p>
+
+<div class="chunk" id="unnamed-chunk-2"><div class="rimage default"><img src="figure/unnamed-chunk-2-1.png" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" class="plot" /></div></div>
+
+<h3>Исходные параметры:</h3>
+
+<div class="chunk" id="unnamed-chunk-3"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl std">r0</span> <span class="hl kwb">=</span> <span class="hl kwd">c</span><span class="hl std">(</span><span class="hl opt">-</span><span class="hl num">2</span><span class="hl std">,</span> <span class="hl num">2</span><span class="hl std">)</span>                                              <span class="hl com"># начальная точка вектора</span>
+<span class="hl std">r1</span> <span class="hl kwb">=</span> <span class="hl kwd">c</span><span class="hl std">(</span><span class="hl num">0</span><span class="hl std">,</span> <span class="hl num">0</span><span class="hl std">)</span>                                               <span class="hl com"># направляющая точка</span>
+<span class="hl std">dr</span> <span class="hl kwb">=</span> <span class="hl kwd">c</span><span class="hl std">(r1[</span><span class="hl num">1</span><span class="hl std">]</span> <span class="hl opt">-</span> <span class="hl std">r0[</span><span class="hl num">1</span><span class="hl std">], r1[</span><span class="hl num">2</span><span class="hl std">]</span> <span class="hl opt">-</span> <span class="hl std">r0[</span><span class="hl num">2</span><span class="hl std">])</span>                       <span class="hl com"># r1 - r0</span>
+<span class="hl std">e</span> <span class="hl kwb">=</span> <span class="hl num">0.001</span>                                                  <span class="hl com"># точность по производной</span>
+</pre></div>
+</div></div>
+
+
+
+
+
+<h3>Нахождение минимума встроенной функцией:</h3>
+
+<div class="chunk" id="unnamed-chunk-6"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl std">opt</span> <span class="hl kwb">=</span> <span class="hl kwd">optimize</span><span class="hl std">(h,</span> <span class="hl kwc">interval</span> <span class="hl std">=</span> <span class="hl kwd">c</span><span class="hl std">(</span><span class="hl num">0</span><span class="hl std">,</span> <span class="hl num">1</span><span class="hl std">),</span> <span class="hl kwc">r0</span> <span class="hl std">= r0,</span> <span class="hl kwc">dr</span> <span class="hl std">= dr,</span> <span class="hl kwc">lower</span> <span class="hl std">=</span> <span class="hl num">0.001</span><span class="hl std">)</span>
+</pre></div>
+</div></div>
+<div class="chunk" id="unnamed-chunk-7"><div class="rcode"><div class="output"><pre class="knitr r">## $minimum
+## [1] 0.9791667
+## 
+## $objective
+## [1] -0.02083333
+</pre></div>
+</div></div>
+
+
+<h3>Нахождение минимума функции методом золотого сечения:</h3>
+
+<div class="chunk" id="unnamed-chunk-8"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl com"># первая итерация - деление отрезка двумя симметричными точками в zss=0.382 и zs=0.618</span>
+
+<span class="hl std">iter</span> <span class="hl kwb">=</span> <span class="hl num">1</span>
+<span class="hl std">p</span> <span class="hl kwb">=</span> <span class="hl kwd">hs</span><span class="hl std">(zs, r0, dr)</span>
+<span class="hl std">p1</span> <span class="hl kwb">=</span> <span class="hl kwd">hs</span><span class="hl std">(zss, r0, dr)</span>
+<span class="hl std">f</span> <span class="hl kwb">=</span> <span class="hl kwd">h</span><span class="hl std">(a, r0, dr)</span>
+<span class="hl std">fplot[iter]</span> <span class="hl kwb">=</span> <span class="hl std">f</span>
+<span class="hl std">aplot[iter]</span> <span class="hl kwb">=</span> <span class="hl std">a</span>
+<span class="hl kwa">if</span> <span class="hl std">(p</span> <span class="hl opt">&gt;</span> <span class="hl std">p1</span> <span class="hl opt">|</span> <span class="hl std">p</span> <span class="hl opt">&lt;</span> <span class="hl num">0</span><span class="hl std">) {</span>
+  <span class="hl std">r0</span> <span class="hl kwb">=</span> <span class="hl kwd">r</span><span class="hl std">(zss, r0, dr)</span>
+  <span class="hl std">dr</span> <span class="hl kwb">=</span> <span class="hl kwd">c</span><span class="hl std">(r1[</span><span class="hl num">1</span><span class="hl std">]</span> <span class="hl opt">-</span> <span class="hl std">r0[</span><span class="hl num">1</span><span class="hl std">], r1[</span><span class="hl num">2</span><span class="hl std">]</span> <span class="hl opt">-</span> <span class="hl std">r0[</span><span class="hl num">2</span><span class="hl std">])</span>
+  <span class="hl std">a</span> <span class="hl kwb">=</span> <span class="hl std">zss</span>
+  <span class="hl std">l</span> <span class="hl kwb">=</span> <span class="hl num">1</span> <span class="hl opt">-</span> <span class="hl std">zss</span>
+<span class="hl std">}</span> <span class="hl kwa">else</span> <span class="hl std">{</span>
+  <span class="hl std">r1</span> <span class="hl kwb">=</span> <span class="hl kwd">r</span><span class="hl std">(zs, r0, dr)</span>
+  <span class="hl std">dr</span> <span class="hl kwb">=</span> <span class="hl kwd">c</span><span class="hl std">(r1[</span><span class="hl num">1</span><span class="hl std">]</span> <span class="hl opt">-</span> <span class="hl std">r0[</span><span class="hl num">1</span><span class="hl std">], r1[</span><span class="hl num">2</span><span class="hl std">]</span> <span class="hl opt">-</span> <span class="hl std">r0[</span><span class="hl num">2</span><span class="hl std">])</span>
+<span class="hl std">}</span>
+
+<span class="hl com"># последующие итерации - деление отрезка одной точкой в zs=0.618</span>
+
+<span class="hl kwa">while</span><span class="hl std">(</span><span class="hl num">TRUE</span><span class="hl std">) {</span>
+  <span class="hl std">iter</span> <span class="hl kwb">=</span> <span class="hl std">iter</span> <span class="hl opt">+</span> <span class="hl num">1</span>
+  <span class="hl std">p</span> <span class="hl kwb">=</span> <span class="hl kwd">hs</span><span class="hl std">(zs, r0, dr)</span>
+  <span class="hl std">f</span> <span class="hl kwb">=</span> <span class="hl kwd">h</span><span class="hl std">(a, r0, dr)</span>
+  <span class="hl std">fplot[iter]</span> <span class="hl kwb">=</span> <span class="hl std">f</span>
+  <span class="hl std">aplot[iter]</span> <span class="hl kwb">=</span> <span class="hl std">a</span>
+  <span class="hl kwa">if</span> <span class="hl std">(</span><span class="hl kwd">abs</span><span class="hl std">(p)</span> <span class="hl opt">&lt;</span> <span class="hl std">e)</span> <span class="hl kwa">break</span>
+  <span class="hl kwa">if</span> <span class="hl std">(p</span> <span class="hl opt">&gt;</span> <span class="hl num">0</span><span class="hl std">) {</span>
+    <span class="hl std">r1</span> <span class="hl kwb">=</span> <span class="hl kwd">r</span><span class="hl std">(zs, r0, dr)</span>
+    <span class="hl std">dr</span> <span class="hl kwb">=</span> <span class="hl kwd">c</span><span class="hl std">(r1[</span><span class="hl num">1</span><span class="hl std">]</span> <span class="hl opt">-</span> <span class="hl std">r0[</span><span class="hl num">1</span><span class="hl std">], r1[</span><span class="hl num">2</span><span class="hl std">]</span> <span class="hl opt">-</span> <span class="hl std">r0[</span><span class="hl num">2</span><span class="hl std">])</span>
+  <span class="hl std">}</span> <span class="hl kwa">else</span> <span class="hl std">{</span>
+    <span class="hl std">r0</span> <span class="hl kwb">=</span> <span class="hl kwd">r</span><span class="hl std">(zs, r0, dr)</span>
+    <span class="hl std">dr</span> <span class="hl kwb">=</span> <span class="hl kwd">c</span><span class="hl std">(r1[</span><span class="hl num">1</span><span class="hl std">]</span> <span class="hl opt">-</span> <span class="hl std">r0[</span><span class="hl num">1</span><span class="hl std">], r1[</span><span class="hl num">2</span><span class="hl std">]</span> <span class="hl opt">-</span> <span class="hl std">r0[</span><span class="hl num">2</span><span class="hl std">])</span>
+    <span class="hl std">a</span> <span class="hl kwb">=</span> <span class="hl std">a</span> <span class="hl opt">+</span> <span class="hl std">(l</span> <span class="hl opt">*</span> <span class="hl std">zs)</span>
+    <span class="hl std">l</span> <span class="hl kwb">=</span> <span class="hl std">l</span> <span class="hl opt">-</span> <span class="hl std">(l</span> <span class="hl opt">*</span> <span class="hl std">zs)</span>
+  <span class="hl std">}</span>
+<span class="hl std">}</span>
+</pre></div>
+</div></div>
+
+<h3>Точка минимума функции f:</h3>
+
+<div class="chunk" id="unnamed-chunk-9"><div class="rcode"><div class="output"><pre class="knitr r">## [1] -0.04271667  0.04271667
+</pre></div>
+</div></div>
+
+
+<h3>Точка минимума функции h:</h3>
+
+<div class="chunk" id="unnamed-chunk-10"><div class="rcode"><div class="output"><pre class="knitr r">## [1] 0.9868404
+</pre></div>
+</div></div>
+
+<h3>Значение функции в точке минимума:</h3>
+
+<div class="chunk" id="unnamed-chunk-11"><div class="rcode"><div class="output"><pre class="knitr r">## [1] -0.0208201
+</pre></div>
+</div></div>
+
+<h3>Производная функции в точке минимума:</h3>
+
+<div class="chunk" id="unnamed-chunk-12"><div class="rcode"><div class="output"><pre class="knitr r">## [1] -0.0002144366
+</pre></div>
+</div></div>
+
+<h3>Количество итераций:</h3>
+
+<div class="chunk" id="unnamed-chunk-13"><div class="rcode"><div class="output"><pre class="knitr r">## [1] 8
+</pre></div>
+</div></div>
+
+<h3>График зависимости h от a:</h3>
+
+<div class="chunk" id="unnamed-chunk-14"><div class="rimage default"><img src="figure/unnamed-chunk-14-1.png" title="plot of chunk unnamed-chunk-14" alt="plot of chunk unnamed-chunk-14" class="plot" /></div></div>
+
+</body>
+</html>

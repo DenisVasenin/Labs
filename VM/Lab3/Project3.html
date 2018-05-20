@@ -1,0 +1,161 @@
+<html>
+
+<head>
+<style type="text/css">
+.knitr .inline {
+  background-color: #f7f7f7;
+  border:solid 1px #B0B0B0;
+}
+.error {
+	font-weight: bold;
+	color: #FF0000;
+}
+.warning {
+	font-weight: bold;
+}
+.message {
+	font-style: italic;
+}
+.source, .output, .warning, .error, .message {
+	padding: 0 1em;
+  border:solid 1px #F7F7F7;
+}
+.source {
+  background-color: #f5f5f5;
+}
+.rimage .left {
+  text-align: left;
+}
+.rimage .right {
+  text-align: right;
+}
+.rimage .center {
+  text-align: center;
+}
+.hl.num {
+  color: #AF0F91;
+}
+.hl.str {
+  color: #317ECC;
+}
+.hl.com {
+  color: #AD95AF;
+  font-style: italic;
+}
+.hl.opt {
+  color: #000000;
+}
+.hl.std {
+  color: #585858;
+}
+.hl.kwa {
+  color: #295F94;
+  font-weight: bold;
+}
+.hl.kwb {
+  color: #B05A65;
+}
+.hl.kwc {
+  color: #55aa55;
+}
+.hl.kwd {
+  color: #BC5A65;
+  font-weight: bold;
+}
+</style>
+<title>Title</title>
+</head>
+
+<body>
+
+
+
+
+<h3 align="center">ОТЧЕТ ПО ЛАБОРАТОРНОЙ РАБОТЕ №3</h3>
+
+<h4 align="center">ИНТЕРПОЛЯЦИЯ</h4>
+
+<p align="center">студент Пенкин Станислав Вячеславович</p>
+
+
+<br><br><br>
+
+
+<p align="center">ЗАДАНИЕ: Смоделировать поверхность буквы "Я"</p>
+
+
+<br><br><br>
+
+
+<p>ЗАДАДИМ МАССИВЫ КООРДИНАТ ОПОРНЫХ ТОЧЕК ДЛЯ ЧАСТЕЙ БУКВЫ:</p>
+
+<div class="chunk" id="unnamed-chunk-2"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl com"># интерполируем по 4-м точкам</span>
+<span class="hl std">t</span> <span class="hl kwb">=</span> <span class="hl kwd">seq</span><span class="hl std">(</span><span class="hl kwc">from</span> <span class="hl std">=</span> <span class="hl num">1</span><span class="hl std">,</span> <span class="hl kwc">to</span> <span class="hl std">=</span> <span class="hl num">4</span><span class="hl std">,</span> <span class="hl kwc">by</span> <span class="hl std">=</span> <span class="hl num">1</span><span class="hl std">)</span>
+<span class="hl std">ts</span> <span class="hl kwb">=</span> <span class="hl kwd">seq</span><span class="hl std">(</span><span class="hl kwc">from</span> <span class="hl std">=</span> <span class="hl kwd">min</span><span class="hl std">(t),</span> <span class="hl kwc">to</span> <span class="hl std">=</span> <span class="hl kwd">max</span><span class="hl std">(t),</span> <span class="hl kwc">length</span> <span class="hl std">=</span> <span class="hl num">100</span><span class="hl std">)</span>
+<span class="hl std">y</span> <span class="hl kwb">=</span> <span class="hl kwd">seq</span><span class="hl std">(</span><span class="hl kwc">from</span> <span class="hl std">=</span> <span class="hl num">5</span><span class="hl std">,</span> <span class="hl kwc">to</span> <span class="hl std">=</span> <span class="hl num">5</span><span class="hl std">,</span> <span class="hl kwc">length.out</span> <span class="hl std">=</span> <span class="hl num">4</span><span class="hl std">)</span>
+
+
+<span class="hl com"># для палки</span>
+<span class="hl std">x1</span> <span class="hl kwb">=</span> <span class="hl kwd">seq</span><span class="hl std">(</span><span class="hl kwc">from</span> <span class="hl std">=</span> <span class="hl num">5</span><span class="hl std">,</span> <span class="hl kwc">to</span> <span class="hl std">=</span> <span class="hl num">5</span><span class="hl std">,</span> <span class="hl kwc">length.out</span> <span class="hl std">=</span> <span class="hl num">4</span><span class="hl std">)</span>
+<span class="hl std">z1</span> <span class="hl kwb">=</span> <span class="hl kwd">c</span><span class="hl std">(</span><span class="hl num">0</span><span class="hl std">,</span> <span class="hl num">2.5</span><span class="hl std">,</span> <span class="hl num">5</span><span class="hl std">,</span> <span class="hl num">7.5</span><span class="hl std">)</span>
+
+<span class="hl com"># для петли</span>
+<span class="hl std">x2</span> <span class="hl kwb">=</span> <span class="hl kwd">c</span><span class="hl std">(</span><span class="hl num">5</span><span class="hl std">,</span> <span class="hl num">3.5</span><span class="hl std">,</span> <span class="hl num">3.5</span><span class="hl std">,</span> <span class="hl num">5</span><span class="hl std">)</span>
+<span class="hl std">z2</span> <span class="hl kwb">=</span> <span class="hl kwd">c</span><span class="hl std">(</span><span class="hl num">3</span><span class="hl std">,</span> <span class="hl num">3.75</span><span class="hl std">,</span> <span class="hl num">6.25</span><span class="hl std">,</span> <span class="hl num">7</span><span class="hl std">)</span>
+
+<span class="hl com"># для ножки</span>
+<span class="hl std">x3</span> <span class="hl kwb">=</span> <span class="hl kwd">c</span><span class="hl std">(</span><span class="hl num">5</span><span class="hl std">,</span> <span class="hl num">4.5</span><span class="hl std">,</span> <span class="hl num">3.5</span><span class="hl std">,</span> <span class="hl num">3</span><span class="hl std">)</span>
+<span class="hl std">z3</span> <span class="hl kwb">=</span> <span class="hl kwd">c</span><span class="hl std">(</span><span class="hl num">2.5</span><span class="hl std">,</span> <span class="hl num">1.75</span><span class="hl std">,</span> <span class="hl num">0.75</span><span class="hl std">,</span> <span class="hl num">0</span><span class="hl std">)</span>
+</pre></div>
+</div></div>
+
+
+
+<p>ИНТЕРПОЛИРУЕМ СПЛАЙНОМ:</p>
+
+<div class="chunk" id="unnamed-chunk-3"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl com"># для палки</span>
+<span class="hl std">df1</span> <span class="hl kwb">=</span> <span class="hl kwd">data.frame</span><span class="hl std">(t, x1, y, z1)</span>
+<span class="hl std">d1</span> <span class="hl kwb">=</span> <span class="hl kwd">apply</span><span class="hl std">(df1[,</span><span class="hl opt">-</span><span class="hl num">1</span><span class="hl std">],</span> <span class="hl num">2</span><span class="hl std">,</span> <span class="hl kwa">function</span><span class="hl std">(</span><span class="hl kwc">u</span><span class="hl std">)</span> <span class="hl kwd">spline</span><span class="hl std">(df1</span><span class="hl opt">$</span><span class="hl std">t, u,</span> <span class="hl kwc">xout</span> <span class="hl std">= ts)</span><span class="hl opt">$</span><span class="hl std">y)</span>
+
+<span class="hl std">p</span> <span class="hl kwb">=</span> <span class="hl kwd">scatterplot3d</span><span class="hl std">(d1,</span>  <span class="hl kwc">color</span> <span class="hl std">=</span> <span class="hl str">&quot;red&quot;</span><span class="hl std">,</span> <span class="hl kwc">type</span><span class="hl std">=</span><span class="hl str">&quot;l&quot;</span><span class="hl std">,</span> <span class="hl kwc">lwd</span><span class="hl std">=</span><span class="hl num">30</span><span class="hl std">,</span> <span class="hl kwc">xlim</span> <span class="hl std">=</span> <span class="hl kwd">c</span><span class="hl std">(</span><span class="hl num">0</span><span class="hl std">,</span> <span class="hl num">10</span><span class="hl std">),</span> <span class="hl kwc">ylim</span> <span class="hl std">=</span> <span class="hl kwd">c</span><span class="hl std">(</span><span class="hl num">0</span><span class="hl std">,</span> <span class="hl num">10</span><span class="hl std">),</span> <span class="hl kwc">zlim</span> <span class="hl std">=</span> <span class="hl kwd">c</span><span class="hl std">(</span><span class="hl num">0</span><span class="hl std">,</span> <span class="hl num">10</span><span class="hl std">),</span> <span class="hl kwc">scale.y</span> <span class="hl std">=</span> <span class="hl num">0.5</span><span class="hl std">,</span> <span class="hl kwc">angle</span> <span class="hl std">=</span> <span class="hl num">60</span><span class="hl std">)</span>
+<span class="hl std">p</span><span class="hl opt">$</span><span class="hl kwd">points3d</span><span class="hl std">(d1,</span> <span class="hl kwc">type</span><span class="hl std">=</span><span class="hl str">&quot;p&quot;</span><span class="hl std">)</span>
+</pre></div>
+</div><div class="rimage default"><img src="figure/unnamed-chunk-3-1.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" class="plot" /></div><div class="rcode">
+<div class="source"><pre class="knitr r"><span class="hl com"># для петли</span>
+<span class="hl std">df2</span> <span class="hl kwb">=</span> <span class="hl kwd">data.frame</span><span class="hl std">(t, x2, y, z2)</span>
+<span class="hl std">d2</span> <span class="hl kwb">=</span> <span class="hl kwd">apply</span><span class="hl std">(df2[,</span><span class="hl opt">-</span><span class="hl num">1</span><span class="hl std">],</span> <span class="hl num">2</span><span class="hl std">,</span> <span class="hl kwa">function</span><span class="hl std">(</span><span class="hl kwc">u</span><span class="hl std">)</span> <span class="hl kwd">spline</span><span class="hl std">(df2</span><span class="hl opt">$</span><span class="hl std">t, u,</span> <span class="hl kwc">xout</span> <span class="hl std">= ts)</span><span class="hl opt">$</span><span class="hl std">y)</span>
+
+<span class="hl std">p</span> <span class="hl kwb">=</span> <span class="hl kwd">scatterplot3d</span><span class="hl std">(d2,</span>  <span class="hl kwc">color</span> <span class="hl std">=</span> <span class="hl str">&quot;red&quot;</span><span class="hl std">,</span> <span class="hl kwc">type</span><span class="hl std">=</span><span class="hl str">&quot;l&quot;</span><span class="hl std">,</span> <span class="hl kwc">lwd</span><span class="hl std">=</span><span class="hl num">30</span><span class="hl std">,</span> <span class="hl kwc">xlim</span> <span class="hl std">=</span> <span class="hl kwd">c</span><span class="hl std">(</span><span class="hl num">0</span><span class="hl std">,</span> <span class="hl num">10</span><span class="hl std">),</span> <span class="hl kwc">ylim</span> <span class="hl std">=</span> <span class="hl kwd">c</span><span class="hl std">(</span><span class="hl num">0</span><span class="hl std">,</span> <span class="hl num">10</span><span class="hl std">),</span> <span class="hl kwc">zlim</span> <span class="hl std">=</span> <span class="hl kwd">c</span><span class="hl std">(</span><span class="hl num">0</span><span class="hl std">,</span> <span class="hl num">10</span><span class="hl std">),</span> <span class="hl kwc">scale.y</span> <span class="hl std">=</span> <span class="hl num">0.5</span><span class="hl std">,</span> <span class="hl kwc">angle</span> <span class="hl std">=</span> <span class="hl num">60</span><span class="hl std">)</span>
+<span class="hl std">p</span><span class="hl opt">$</span><span class="hl kwd">points3d</span><span class="hl std">(d2,</span> <span class="hl kwc">type</span><span class="hl std">=</span><span class="hl str">&quot;p&quot;</span><span class="hl std">)</span>
+</pre></div>
+</div><div class="rimage default"><img src="figure/unnamed-chunk-3-2.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" class="plot" /></div><div class="rcode">
+<div class="source"><pre class="knitr r"><span class="hl com"># для ножки</span>
+<span class="hl std">df3</span> <span class="hl kwb">=</span> <span class="hl kwd">data.frame</span><span class="hl std">(t, x3, y, z3)</span>
+<span class="hl std">d3</span> <span class="hl kwb">=</span> <span class="hl kwd">apply</span><span class="hl std">(df3[,</span><span class="hl opt">-</span><span class="hl num">1</span><span class="hl std">],</span> <span class="hl num">2</span><span class="hl std">,</span> <span class="hl kwa">function</span><span class="hl std">(</span><span class="hl kwc">u</span><span class="hl std">)</span> <span class="hl kwd">spline</span><span class="hl std">(df3</span><span class="hl opt">$</span><span class="hl std">t, u,</span> <span class="hl kwc">xout</span> <span class="hl std">= ts)</span><span class="hl opt">$</span><span class="hl std">y)</span>
+
+<span class="hl std">p</span> <span class="hl kwb">=</span> <span class="hl kwd">scatterplot3d</span><span class="hl std">(d3,</span>  <span class="hl kwc">color</span> <span class="hl std">=</span> <span class="hl str">&quot;red&quot;</span><span class="hl std">,</span> <span class="hl kwc">type</span><span class="hl std">=</span><span class="hl str">&quot;l&quot;</span><span class="hl std">,</span> <span class="hl kwc">lwd</span><span class="hl std">=</span><span class="hl num">30</span><span class="hl std">,</span> <span class="hl kwc">xlim</span> <span class="hl std">=</span> <span class="hl kwd">c</span><span class="hl std">(</span><span class="hl num">0</span><span class="hl std">,</span> <span class="hl num">10</span><span class="hl std">),</span> <span class="hl kwc">ylim</span> <span class="hl std">=</span> <span class="hl kwd">c</span><span class="hl std">(</span><span class="hl num">0</span><span class="hl std">,</span> <span class="hl num">10</span><span class="hl std">),</span> <span class="hl kwc">zlim</span> <span class="hl std">=</span> <span class="hl kwd">c</span><span class="hl std">(</span><span class="hl num">0</span><span class="hl std">,</span> <span class="hl num">10</span><span class="hl std">),</span> <span class="hl kwc">scale.y</span> <span class="hl std">=</span> <span class="hl num">0.5</span><span class="hl std">,</span> <span class="hl kwc">angle</span> <span class="hl std">=</span> <span class="hl num">60</span><span class="hl std">)</span>
+<span class="hl std">p</span><span class="hl opt">$</span><span class="hl kwd">points3d</span><span class="hl std">(d3,</span> <span class="hl kwc">type</span><span class="hl std">=</span><span class="hl str">&quot;p&quot;</span><span class="hl std">)</span>
+</pre></div>
+</div><div class="rimage default"><img src="figure/unnamed-chunk-3-3.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" class="plot" /></div></div>
+
+
+
+<p>РИСУЕМ БУКВУ:</p>
+
+<div class="chunk" id="unnamed-chunk-4"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl com"># обьединяем данные для вывода</span>
+<span class="hl std">d</span> <span class="hl kwb">=</span> <span class="hl kwd">rbind</span><span class="hl std">(d1 , d2, d3)</span>
+
+<span class="hl com"># отрисовываем букву</span>
+<span class="hl std">p</span> <span class="hl kwb">=</span> <span class="hl kwd">scatterplot3d</span><span class="hl std">(d,</span>  <span class="hl kwc">color</span> <span class="hl std">=</span> <span class="hl str">&quot;red&quot;</span><span class="hl std">,</span> <span class="hl kwc">type</span><span class="hl std">=</span><span class="hl str">&quot;l&quot;</span><span class="hl std">,</span> <span class="hl kwc">lwd</span><span class="hl std">=</span><span class="hl num">30</span><span class="hl std">,</span> <span class="hl kwc">xlim</span> <span class="hl std">=</span> <span class="hl kwd">c</span><span class="hl std">(</span><span class="hl num">0</span><span class="hl std">,</span> <span class="hl num">10</span><span class="hl std">),</span> <span class="hl kwc">ylim</span> <span class="hl std">=</span> <span class="hl kwd">c</span><span class="hl std">(</span><span class="hl num">0</span><span class="hl std">,</span> <span class="hl num">10</span><span class="hl std">),</span> <span class="hl kwc">zlim</span> <span class="hl std">=</span> <span class="hl kwd">c</span><span class="hl std">(</span><span class="hl num">0</span><span class="hl std">,</span> <span class="hl num">10</span><span class="hl std">),</span> <span class="hl kwc">scale.y</span> <span class="hl std">=</span> <span class="hl num">0.5</span><span class="hl std">,</span> <span class="hl kwc">angle</span> <span class="hl std">=</span> <span class="hl num">60</span><span class="hl std">)</span>
+
+<span class="hl com"># добавляем на график точки</span>
+<span class="hl std">p</span><span class="hl opt">$</span><span class="hl kwd">points3d</span><span class="hl std">(d1,</span> <span class="hl kwc">type</span><span class="hl std">=</span><span class="hl str">&quot;p&quot;</span><span class="hl std">)</span>
+<span class="hl std">p</span><span class="hl opt">$</span><span class="hl kwd">points3d</span><span class="hl std">(d2,</span> <span class="hl kwc">type</span><span class="hl std">=</span><span class="hl str">&quot;p&quot;</span><span class="hl std">)</span>
+<span class="hl std">p</span><span class="hl opt">$</span><span class="hl kwd">points3d</span><span class="hl std">(d3,</span> <span class="hl kwc">type</span><span class="hl std">=</span><span class="hl str">&quot;p&quot;</span><span class="hl std">)</span>
+</pre></div>
+</div><div class="rimage default"><img src="figure/unnamed-chunk-4-1.png" title="plot of chunk unnamed-chunk-4" alt="plot of chunk unnamed-chunk-4" class="plot" /></div></div>
+
+
+
+</body>
+</html>

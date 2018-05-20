@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "library('tools')\nlibrary('reshape2')\nlibrary('plyr')\n\n# УСТАНОВКА ПУТЕЙ\nif (!file.exists(\"./data\")) {\n    print(paste(\"Проверьте правильность пути.\"))\n    quit()\n}\ncsv_path = \"./data/keylog/\"\ndtime_path = \"./data/dtime/\"\nres_path = \"./data/result/\"\n\nlist_files = list.files(csv_path)\nusers = data.frame(id = 1:length(list_files), user = list_files) \nwrite.csv(users, file = \"./data/result/users.csv\", row.names = FALSE)\n\n# ОБРАБОТКА ФАЙЛОВ KEYLOG\nfor (i in 1:length(list_files)) {\n    tryCatch({\n        file_path = paste(csv_path, list_files[i], sep = \"\")\n        frame_path = paste(dtime_path, 'dtime_', list_files[i], sep = \"\")\n        keylog = read.csv(file_path, colClasses = c(\"integer\", \"integer\"), header = FALSE, sep = \",\")\n        time_pres = keylog[,1]\n        key_pres = keylog[,2]\n        len_key_pres = nrow(keylog) \n        dtime = data.frame(id = i, key1 = key_pres[1:(len_key_pres - 1)], key2 = key_pres[2:len_key_pres], dtime = time_pres[2:len_key_pres] - time_pres[1:(len_key_pres - 1)], stringsAsFactors = FALSE)\n        uniq1 = !is.na(dtime$key1)\n        uniq2 = !is.na(dtime$key2)\n        dtime = dtime[uniq1 & uniq2,] \n        dtime = dtime[dtime$dtime < 2000,]\n        dtime = dtime[dtime$dtime > 0,]\n        write.csv(dtime, file = frame_path, row.names = FALSE)\n    }, error = function(e){print(e)})\n}\n\n# ОБЬЕДИНЕНИЕ ФАЙЛОВ DTIME\nlist_files = list.files(dtime_path)\nframe_path = paste(dtime_path, list_files[1], sep = \"\")\nresult = read.csv(frame_path, header = TRUE, sep = \",\")\nfor (i in 2:length(list_files)) {\n    frame_path = paste(dtime_path, list_files[i], sep = \"\")\n    frame = read.csv(frame_path, header = TRUE, sep = \",\")\n    result = merge.data.frame(result, frame, all = TRUE, sort = FALSE)\n}\n\n# Находим \"mean + 3sigma\"\nres_3sg = round(mean(result$dtime) + sd(result$dtime) * 3)\n# Убираем строки со значениями \">3sg\"\nresult = result[result$dtime < res_3sg,]\n# Получаем кол-во переходов для каждой клавиши\nct_result = acast(result, key1 ~ key2, length, value.var = \"dtime\")\n\n# Получаем среднее время каждого перехода\n#cm_result = acast(result, key1 ~ key2, fun.aggregate = mean, fill = 0, value.var = \"dtime\")\n\n# АНАЛИЗИРУЕМ ДАННЫЕ ПО КАЖДОМУ ПОЛЬЗОВАТЕЛЮ ОТДЕЛЬНО\nc_users = max(unique(result$id))\nmin_tab = ct_result\nminTabFun = Vectorize(function(tab1, tab2) { min(tab1, tab2) }, c(\"tab1\", \"tab2\"))\n\n#dt_list = list(1:c_users)\n\n# Будем исследовать только те переходы, которые встречаются у каждого пользователя\nfor (i in 1:c_users) {\n    data_user = result[result$id == i,]\n    ct_user = acast(data_user, key1 ~ key2, length, value.var = \"dtime\")\n    #cm_user = acast(data_user, key1 ~ key2, mean, fill = 0, value.var = \"dtime\")\n    data_user = ct_result * 0\n    data_user[rownames(ct_user), colnames(ct_user)] = ct_user\n    min_tab = matrix(data = minTabFun(min_tab, data_user), nrow = nrow(ct_result), ncol = ncol(ct_result))\n    #dt_list[[i]] = cm_user\n}\n# Уберем редковстречаемые переходы\nmin_tab[min_tab < round(mean(min_tab))] = 0\n# Вытащим коды клавиш для таких переходов\nrownames(min_tab) = rownames(ct_result)\ncolnames(min_tab) = colnames(ct_result)\nname_rows_cols = matrix(0, nrow = length(min_tab[min_tab > 0]), ncol = 2)\ni = 1\nfor (r in 1:nrow(min_tab)) {\n    for (c in 1:ncol(min_tab)) {\n        if (min_tab[r, c] > 0) {\n            name_rows_cols[i, 1] = rownames(min_tab)[r]\n            name_rows_cols[i, 2] = colnames(min_tab)[c]\n            i = i + 1\n        }\n    }\n}\n\n#rm(dtime, keylog, frame, key_pres, csv_path, file_path, frame_path, len_key_pres, list_files, res_3sg, time_pres, data_user, ct_user, r, i, c, ct_result, uniq1, uniq2)\n\n\n\n#write.csv(result, file = \"./data/result/result.csv\", row.names = FALSE)",
+    "created" : 1483659433157.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2704230042",
+    "id" : "624C38CB",
+    "lastKnownWriteTime" : 1483662647,
+    "last_content_update" : 1483662647786,
+    "path" : "~/Documents/Programs/R/MetOpt/RGR/Anal.R",
+    "project_path" : "Anal.R",
+    "properties" : {
+        "docOutlineVisible" : "0",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

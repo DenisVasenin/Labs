@@ -1,0 +1,88 @@
+/* ---------------------------------CAROUSEL #1------------------------------------- */
+
+#carousel_1
+{
+    background: #ffffff;
+}
+
+.owl-dots
+{
+    position: relative;
+    display: block;
+    max-width: 145px;
+    margin: auto;
+    padding: 10px;
+    background: #ffffff;
+    border-radius: 3px;
+    opacity: 0;
+}
+
+.owl-dots .owl-dot
+{
+    display: inline-block;
+}
+
+.owl-dots .owl-dot span
+{
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    margin: 0px 5px;
+    border-radius: 50%;
+    vertical-align: middle;
+    background: #506a85;
+}
+
+.owl-dots .owl-dot.active span, .owl-dot:hover span
+{
+    background: #17a78b;
+}
+
+/* ----------------------------------------------------------------------------------------- */
+.owl-nav
+{
+    opacity: 0;
+}
+
+.owl-prev, .owl-next
+{
+    position: absolute;
+    width: 55px;
+    height: 55px;
+    color: #ffffff;
+    border-radius: 3px;
+    background-color: #506a85;
+    background-size: cover;
+}
+
+.owl-prev
+{
+    top: 46%;
+    left: 25px;
+    background-image: url(../images/owlcarousel/arrow_left.png);
+}
+
+.owl-next
+{
+    top: 46%;
+    right: 25px;
+    background-image: url(../images/owlcarousel/arrow_right.png);
+}
+
+.owl-prev:hover
+{
+    background-image: url(../images/owlcarousel/arrow_left_hover.png);
+    opacity: 0.9;
+}
+
+.owl-next:hover
+{
+    background-image: url(../images/owlcarousel/arrow_right_hover.png);
+    opacity: 0.9;
+}
+
+
+/* ---------------------------------CAROUSEL #2------------------------------------- */
+
+
+

@@ -1,0 +1,1167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" tiledversion="1.0.3" orientation="orthogonal" renderorder="left-up" width="25" height="20" tilewidth="32" tileheight="32" nextobjectid="1060">
+ <properties>
+  <property name="map" type="bool" value="true"/>
+ </properties>
+ <tileset firstgid="1" name="tiles" tilewidth="32" tileheight="32" tilecount="256" columns="16">
+  <image source="../tiles/pacman32x32.png" width="512" height="512"/>
+  <tile id="0">
+   <objectgroup draworder="index">
+    <object id="3" name="red" type="ghost" x="0" y="0" width="32" height="32"/>
+   </objectgroup>
+   <animation>
+    <frame tileid="0" duration="100"/>
+    <frame tileid="1" duration="100"/>
+    <frame tileid="2" duration="100"/>
+    <frame tileid="3" duration="100"/>
+    <frame tileid="36" duration="100"/>
+    <frame tileid="4" duration="100"/>
+    <frame tileid="38" duration="100"/>
+    <frame tileid="32" duration="100"/>
+    <frame tileid="33" duration="100"/>
+    <frame tileid="34" duration="100"/>
+    <frame tileid="35" duration="100"/>
+   </animation>
+  </tile>
+  <tile id="5">
+   <objectgroup draworder="index">
+    <object id="1" name="pink" type="ghost" x="0" y="0" width="32" height="32"/>
+   </objectgroup>
+   <animation>
+    <frame tileid="5" duration="100"/>
+    <frame tileid="6" duration="100"/>
+    <frame tileid="7" duration="100"/>
+    <frame tileid="8" duration="100"/>
+    <frame tileid="36" duration="100"/>
+    <frame tileid="9" duration="100"/>
+    <frame tileid="38" duration="100"/>
+    <frame tileid="32" duration="100"/>
+    <frame tileid="33" duration="100"/>
+    <frame tileid="34" duration="100"/>
+    <frame tileid="35" duration="100"/>
+   </animation>
+  </tile>
+  <tile id="10">
+   <objectgroup draworder="index">
+    <object id="1" name="blue" type="ghost" x="0" y="0" width="32" height="32"/>
+   </objectgroup>
+   <animation>
+    <frame tileid="10" duration="100"/>
+    <frame tileid="11" duration="100"/>
+    <frame tileid="12" duration="100"/>
+    <frame tileid="13" duration="100"/>
+    <frame tileid="36" duration="100"/>
+    <frame tileid="14" duration="100"/>
+    <frame tileid="38" duration="100"/>
+    <frame tileid="32" duration="100"/>
+    <frame tileid="33" duration="100"/>
+    <frame tileid="34" duration="100"/>
+    <frame tileid="35" duration="100"/>
+   </animation>
+  </tile>
+  <tile id="16">
+   <objectgroup draworder="index">
+    <object id="1" name="orange" type="ghost" x="0" y="0" width="32" height="32"/>
+   </objectgroup>
+   <animation>
+    <frame tileid="16" duration="100"/>
+    <frame tileid="17" duration="100"/>
+    <frame tileid="18" duration="100"/>
+    <frame tileid="19" duration="100"/>
+    <frame tileid="36" duration="100"/>
+    <frame tileid="20" duration="100"/>
+    <frame tileid="38" duration="100"/>
+    <frame tileid="32" duration="100"/>
+    <frame tileid="33" duration="100"/>
+    <frame tileid="34" duration="100"/>
+    <frame tileid="35" duration="100"/>
+   </animation>
+  </tile>
+  <tile id="21">
+   <objectgroup draworder="index">
+    <object id="1" name="green" type="ghost" x="0" y="0" width="32" height="32"/>
+   </objectgroup>
+   <animation>
+    <frame tileid="21" duration="100"/>
+    <frame tileid="22" duration="100"/>
+    <frame tileid="23" duration="100"/>
+    <frame tileid="24" duration="100"/>
+    <frame tileid="36" duration="100"/>
+    <frame tileid="25" duration="100"/>
+    <frame tileid="38" duration="100"/>
+    <frame tileid="32" duration="100"/>
+    <frame tileid="33" duration="100"/>
+    <frame tileid="34" duration="100"/>
+    <frame tileid="35" duration="100"/>
+   </animation>
+  </tile>
+  <tile id="26">
+   <objectgroup draworder="index">
+    <object id="1" name="violet" type="ghost" x="0" y="0" width="32" height="32"/>
+   </objectgroup>
+   <animation>
+    <frame tileid="26" duration="100"/>
+    <frame tileid="27" duration="100"/>
+    <frame tileid="28" duration="100"/>
+    <frame tileid="29" duration="100"/>
+    <frame tileid="36" duration="100"/>
+    <frame tileid="30" duration="100"/>
+    <frame tileid="38" duration="100"/>
+    <frame tileid="32" duration="100"/>
+    <frame tileid="33" duration="100"/>
+    <frame tileid="34" duration="100"/>
+    <frame tileid="35" duration="100"/>
+   </animation>
+  </tile>
+  <tile id="48">
+   <objectgroup draworder="index">
+    <object id="1" name="pacman" type="player" x="0" y="0" width="32" height="32"/>
+   </objectgroup>
+   <animation>
+    <frame tileid="48" duration="100"/>
+    <frame tileid="49" duration="100"/>
+    <frame tileid="50" duration="100"/>
+    <frame tileid="51" duration="100"/>
+    <frame tileid="52" duration="100"/>
+    <frame tileid="53" duration="100"/>
+    <frame tileid="54" duration="100"/>
+    <frame tileid="55" duration="100"/>
+    <frame tileid="56" duration="100"/>
+    <frame tileid="57" duration="100"/>
+    <frame tileid="58" duration="100"/>
+    <frame tileid="59" duration="100"/>
+    <frame tileid="60" duration="100"/>
+    <frame tileid="61" duration="100"/>
+   </animation>
+  </tile>
+  <tile id="64">
+   <objectgroup draworder="index">
+    <object id="1" name="cookie" type="bonus" x="0" y="0" width="32" height="32"/>
+   </objectgroup>
+  </tile>
+  <tile id="65">
+   <objectgroup draworder="index">
+    <object id="1" name="cherry" type="bonus" x="0" y="0" width="32" height="32"/>
+   </objectgroup>
+  </tile>
+  <tile id="66">
+   <objectgroup draworder="index">
+    <object id="1" name="heart" type="bonus" x="0" y="0" width="32" height="32"/>
+   </objectgroup>
+  </tile>
+  <tile id="67">
+   <objectgroup draworder="index">
+    <object id="2" name="crystal" type="bonus" x="0" y="0" width="32" height="32"/>
+   </objectgroup>
+  </tile>
+  <tile id="97">
+   <objectgroup draworder="index">
+    <object id="1" name="spawnpoint" type="spawnpoint" x="0" y="0" width="32" height="32"/>
+   </objectgroup>
+  </tile>
+  <tile id="133">
+   <objectgroup draworder="index">
+    <object id="1" name="block" type="barrier" x="0" y="0" width="32" height="32"/>
+   </objectgroup>
+  </tile>
+  <tile id="134">
+   <objectgroup draworder="index">
+    <object id="1" name="door" type="barrier" x="0" y="0" width="32" height="32"/>
+   </objectgroup>
+  </tile>
+ </tileset>
+ <layer name="background" width="25" height="20">
+  <data>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+   <tile gid="97"/>
+  </data>
+ </layer>
+ <objectgroup name="barriers">
+  <object id="211" name="wall" type="barrier" gid="134" x="0" y="32" width="32" height="32"/>
+  <object id="212" name="wall" type="barrier" gid="134" x="32" y="32" width="32" height="32"/>
+  <object id="213" name="wall" type="barrier" gid="134" x="64" y="32" width="32" height="32"/>
+  <object id="214" name="wall" type="barrier" gid="134" x="96" y="32" width="32" height="32"/>
+  <object id="215" name="wall" type="barrier" gid="134" x="128" y="32" width="32" height="32"/>
+  <object id="216" name="wall" type="barrier" gid="134" x="160" y="32" width="32" height="32"/>
+  <object id="217" name="wall" type="barrier" gid="134" x="192" y="32" width="32" height="32"/>
+  <object id="218" name="wall" type="barrier" gid="134" x="224" y="32" width="32" height="32"/>
+  <object id="219" name="wall" type="barrier" gid="134" x="256" y="32" width="32" height="32"/>
+  <object id="220" name="wall" type="barrier" gid="134" x="288" y="32" width="32" height="32"/>
+  <object id="221" name="wall" type="barrier" gid="134" x="320" y="32" width="32" height="32"/>
+  <object id="222" name="wall" type="barrier" gid="134" x="352" y="32" width="32" height="32"/>
+  <object id="223" name="wall" type="barrier" gid="134" x="384" y="32" width="32" height="32"/>
+  <object id="224" name="wall" type="barrier" gid="134" x="416" y="32" width="32" height="32"/>
+  <object id="225" name="wall" type="barrier" gid="134" x="448" y="32" width="32" height="32"/>
+  <object id="226" name="wall" type="barrier" gid="134" x="480" y="32" width="32" height="32"/>
+  <object id="227" name="wall" type="barrier" gid="134" x="512" y="32" width="32" height="32"/>
+  <object id="228" name="wall" type="barrier" gid="134" x="544" y="32" width="32" height="32"/>
+  <object id="229" name="wall" type="barrier" gid="134" x="576" y="32" width="32" height="32"/>
+  <object id="230" name="wall" type="barrier" gid="134" x="608" y="32" width="32" height="32"/>
+  <object id="231" name="wall" type="barrier" gid="134" x="640" y="32" width="32" height="32"/>
+  <object id="232" name="wall" type="barrier" gid="134" x="672" y="32" width="32" height="32"/>
+  <object id="233" name="wall" type="barrier" gid="134" x="704" y="32" width="32" height="32"/>
+  <object id="234" name="wall" type="barrier" gid="134" x="736" y="32" width="32" height="32"/>
+  <object id="235" name="wall" type="barrier" gid="134" x="768" y="32" width="32" height="32"/>
+  <object id="236" name="wall" type="barrier" gid="134" x="0" y="64" width="32" height="32"/>
+  <object id="237" name="wall" type="barrier" gid="134" x="0" y="96" width="32" height="32"/>
+  <object id="238" name="wall" type="barrier" gid="134" x="0" y="128" width="32" height="32"/>
+  <object id="239" name="wall" type="barrier" gid="134" x="0" y="160" width="32" height="32"/>
+  <object id="240" name="wall" type="barrier" gid="134" x="0" y="192" width="32" height="32"/>
+  <object id="241" name="wall" type="barrier" gid="134" x="0" y="224" width="32" height="32"/>
+  <object id="242" name="wall" type="barrier" gid="134" x="0" y="256" width="32" height="32"/>
+  <object id="243" name="wall" type="barrier" gid="134" x="0" y="288" width="32" height="32"/>
+  <object id="244" name="wall" type="barrier" gid="134" x="0" y="320" width="32" height="32"/>
+  <object id="245" name="wall" type="barrier" gid="134" x="0" y="352" width="32" height="32"/>
+  <object id="246" name="wall" type="barrier" gid="134" x="0" y="384" width="32" height="32"/>
+  <object id="247" name="wall" type="barrier" gid="134" x="0" y="416" width="32" height="32"/>
+  <object id="248" name="wall" type="barrier" gid="134" x="0" y="448" width="32" height="32"/>
+  <object id="249" name="wall" type="barrier" gid="134" x="0" y="480" width="32" height="32"/>
+  <object id="250" name="wall" type="barrier" gid="134" x="0" y="512" width="32" height="32"/>
+  <object id="251" name="wall" type="barrier" gid="134" x="0" y="544" width="32" height="32"/>
+  <object id="252" name="wall" type="barrier" gid="134" x="0" y="576" width="32" height="32"/>
+  <object id="253" name="wall" type="barrier" gid="134" x="0" y="608" width="32" height="32"/>
+  <object id="254" name="wall" type="barrier" gid="134" x="0" y="640" width="32" height="32"/>
+  <object id="255" name="wall" type="barrier" gid="134" x="32" y="640" width="32" height="32"/>
+  <object id="256" name="wall" type="barrier" gid="134" x="64" y="640" width="32" height="32"/>
+  <object id="257" name="wall" type="barrier" gid="134" x="96" y="640" width="32" height="32"/>
+  <object id="258" name="wall" type="barrier" gid="134" x="128" y="640" width="32" height="32"/>
+  <object id="259" name="wall" type="barrier" gid="134" x="160" y="640" width="32" height="32"/>
+  <object id="260" name="wall" type="barrier" gid="134" x="192" y="640" width="32" height="32"/>
+  <object id="261" name="wall" type="barrier" gid="134" x="224" y="640" width="32" height="32"/>
+  <object id="262" name="wall" type="barrier" gid="134" x="256" y="640" width="32" height="32"/>
+  <object id="263" name="wall" type="barrier" gid="134" x="288" y="640" width="32" height="32"/>
+  <object id="264" name="wall" type="barrier" gid="134" x="320" y="640" width="32" height="32"/>
+  <object id="265" name="wall" type="barrier" gid="134" x="352" y="640" width="32" height="32"/>
+  <object id="266" name="wall" type="barrier" gid="134" x="384" y="640" width="32" height="32"/>
+  <object id="267" name="wall" type="barrier" gid="134" x="416" y="640" width="32" height="32"/>
+  <object id="268" name="wall" type="barrier" gid="134" x="448" y="640" width="32" height="32"/>
+  <object id="269" name="wall" type="barrier" gid="134" x="480" y="640" width="32" height="32"/>
+  <object id="270" name="wall" type="barrier" gid="134" x="512" y="640" width="32" height="32"/>
+  <object id="271" name="wall" type="barrier" gid="134" x="544" y="640" width="32" height="32"/>
+  <object id="272" name="wall" type="barrier" gid="134" x="576" y="640" width="32" height="32"/>
+  <object id="273" name="wall" type="barrier" gid="134" x="608" y="640" width="32" height="32"/>
+  <object id="274" name="wall" type="barrier" gid="134" x="640" y="640" width="32" height="32"/>
+  <object id="275" name="wall" type="barrier" gid="134" x="672" y="640" width="32" height="32"/>
+  <object id="276" name="wall" type="barrier" gid="134" x="704" y="640" width="32" height="32"/>
+  <object id="277" name="wall" type="barrier" gid="134" x="736" y="640" width="32" height="32"/>
+  <object id="278" name="wall" type="barrier" gid="134" x="768" y="640" width="32" height="32"/>
+  <object id="279" name="wall" type="barrier" gid="134" x="768" y="608" width="32" height="32"/>
+  <object id="280" name="wall" type="barrier" gid="134" x="768" y="576" width="32" height="32"/>
+  <object id="281" name="wall" type="barrier" gid="134" x="768" y="544" width="32" height="32"/>
+  <object id="282" name="wall" type="barrier" gid="134" x="768" y="512" width="32" height="32"/>
+  <object id="283" name="wall" type="barrier" gid="134" x="768" y="480" width="32" height="32"/>
+  <object id="284" name="wall" type="barrier" gid="134" x="768" y="448" width="32" height="32"/>
+  <object id="285" name="wall" type="barrier" gid="134" x="768" y="416" width="32" height="32"/>
+  <object id="286" name="wall" type="barrier" gid="134" x="768" y="384" width="32" height="32"/>
+  <object id="287" name="wall" type="barrier" gid="134" x="768" y="352" width="32" height="32"/>
+  <object id="288" name="wall" type="barrier" gid="134" x="768" y="320" width="32" height="32"/>
+  <object id="289" name="wall" type="barrier" gid="134" x="768" y="288" width="32" height="32"/>
+  <object id="290" name="wall" type="barrier" gid="134" x="768" y="256" width="32" height="32"/>
+  <object id="291" name="wall" type="barrier" gid="134" x="768" y="224" width="32" height="32"/>
+  <object id="292" name="wall" type="barrier" gid="134" x="768" y="192" width="32" height="32"/>
+  <object id="293" name="wall" type="barrier" gid="134" x="768" y="160" width="32" height="32"/>
+  <object id="294" name="wall" type="barrier" gid="134" x="768" y="128" width="32" height="32"/>
+  <object id="295" name="wall" type="barrier" gid="134" x="768" y="96" width="32" height="32"/>
+  <object id="296" name="wall" type="barrier" gid="134" x="768" y="64" width="32" height="32"/>
+  <object id="297" name="wall" type="barrier" gid="134" x="448" y="320" width="32" height="32"/>
+  <object id="298" name="wall" type="barrier" gid="134" x="320" y="320" width="32" height="32"/>
+  <object id="299" name="wall" type="barrier" gid="134" x="320" y="352" width="32" height="32"/>
+  <object id="300" name="wall" type="barrier" gid="134" x="352" y="352" width="32" height="32"/>
+  <object id="301" name="wall" type="barrier" gid="134" x="384" y="352" width="32" height="32"/>
+  <object id="302" name="wall" type="barrier" gid="134" x="416" y="352" width="32" height="32"/>
+  <object id="303" name="wall" type="barrier" gid="134" x="448" y="352" width="32" height="32"/>
+  <object id="304" name="wall" type="barrier" gid="134" x="320" y="288" width="32" height="32"/>
+  <object id="305" name="wall" type="barrier" gid="134" x="352" y="288" width="32" height="32"/>
+  <object id="306" name="wall" type="barrier" gid="134" x="416" y="288" width="32" height="32"/>
+  <object id="307" name="wall" type="barrier" gid="134" x="448" y="288" width="32" height="32"/>
+  <object id="310" name="wall" type="barrier" gid="134" x="384" y="224" width="32" height="32"/>
+  <object id="311" name="wall" type="barrier" gid="134" x="384" y="192" width="32" height="32"/>
+  <object id="312" name="wall" type="barrier" gid="134" x="320" y="160" width="32" height="32"/>
+  <object id="313" name="wall" type="barrier" gid="134" x="352" y="160" width="32" height="32"/>
+  <object id="314" name="wall" type="barrier" gid="134" x="384" y="160" width="32" height="32"/>
+  <object id="315" name="wall" type="barrier" gid="134" x="416" y="160" width="32" height="32"/>
+  <object id="316" name="wall" type="barrier" gid="134" x="448" y="160" width="32" height="32"/>
+  <object id="317" name="wall" type="barrier" gid="134" x="320" y="224" width="32" height="32"/>
+  <object id="318" name="wall" type="barrier" gid="134" x="288" y="224" width="32" height="32"/>
+  <object id="319" name="wall" type="barrier" gid="134" x="256" y="192" width="32" height="32"/>
+  <object id="320" name="wall" type="barrier" gid="134" x="256" y="160" width="32" height="32"/>
+  <object id="321" name="wall" type="barrier" gid="134" x="256" y="224" width="32" height="32"/>
+  <object id="322" name="wall" type="barrier" gid="134" x="256" y="256" width="32" height="32"/>
+  <object id="323" name="wall" type="barrier" gid="134" x="256" y="288" width="32" height="32"/>
+  <object id="324" name="wall" type="barrier" gid="134" x="480" y="224" width="32" height="32"/>
+  <object id="325" name="wall" type="barrier" gid="134" x="448" y="224" width="32" height="32"/>
+  <object id="326" name="wall" type="barrier" gid="134" x="512" y="224" width="32" height="32"/>
+  <object id="327" name="wall" type="barrier" gid="134" x="512" y="192" width="32" height="32"/>
+  <object id="328" name="wall" type="barrier" gid="134" x="512" y="160" width="32" height="32"/>
+  <object id="329" name="wall" type="barrier" gid="134" x="512" y="256" width="32" height="32"/>
+  <object id="330" name="wall" type="barrier" gid="134" x="512" y="288" width="32" height="32"/>
+  <object id="331" name="wall" type="barrier" gid="134" x="384" y="96" width="32" height="32"/>
+  <object id="332" name="wall" type="barrier" gid="134" x="384" y="64" width="32" height="32"/>
+  <object id="333" name="wall" type="barrier" gid="134" x="320" y="96" width="32" height="32"/>
+  <object id="334" name="wall" type="barrier" gid="134" x="288" y="96" width="32" height="32"/>
+  <object id="335" name="wall" type="barrier" gid="134" x="256" y="96" width="32" height="32"/>
+  <object id="336" name="wall" type="barrier" gid="134" x="448" y="96" width="32" height="32"/>
+  <object id="337" name="wall" type="barrier" gid="134" x="480" y="96" width="32" height="32"/>
+  <object id="338" name="wall" type="barrier" gid="134" x="512" y="96" width="32" height="32"/>
+  <object id="339" name="wall" type="barrier" gid="134" x="64" y="96" width="32" height="32"/>
+  <object id="340" name="wall" type="barrier" gid="134" x="96" y="96" width="32" height="32"/>
+  <object id="341" name="wall" type="barrier" gid="134" x="128" y="96" width="32" height="32"/>
+  <object id="342" name="wall" type="barrier" gid="134" x="224" y="96" width="32" height="32"/>
+  <object id="343" name="wall" type="barrier" gid="134" x="160" y="96" width="32" height="32"/>
+  <object id="344" name="wall" type="barrier" gid="134" x="64" y="128" width="32" height="32"/>
+  <object id="345" name="wall" type="barrier" gid="134" x="96" y="128" width="32" height="32"/>
+  <object id="346" name="wall" type="barrier" gid="134" x="128" y="128" width="32" height="32"/>
+  <object id="347" name="wall" type="barrier" gid="134" x="160" y="128" width="32" height="32"/>
+  <object id="348" name="wall" type="barrier" gid="134" x="320" y="416" width="32" height="32"/>
+  <object id="349" name="wall" type="barrier" gid="134" x="352" y="416" width="32" height="32"/>
+  <object id="350" name="wall" type="barrier" gid="134" x="384" y="416" width="32" height="32"/>
+  <object id="351" name="wall" type="barrier" gid="134" x="416" y="416" width="32" height="32"/>
+  <object id="352" name="wall" type="barrier" gid="134" x="448" y="416" width="32" height="32"/>
+  <object id="353" name="wall" type="barrier" gid="134" x="384" y="448" width="32" height="32"/>
+  <object id="354" name="wall" type="barrier" gid="134" x="384" y="480" width="32" height="32"/>
+  <object id="357" name="wall" type="barrier" gid="134" x="256" y="480" width="32" height="32"/>
+  <object id="358" name="wall" type="barrier" gid="134" x="256" y="448" width="32" height="32"/>
+  <object id="359" name="wall" type="barrier" gid="134" x="256" y="416" width="32" height="32"/>
+  <object id="360" name="wall" type="barrier" gid="134" x="224" y="480" width="32" height="32"/>
+  <object id="361" name="wall" type="barrier" gid="134" x="192" y="480" width="32" height="32"/>
+  <object id="362" name="wall" type="barrier" gid="134" x="160" y="480" width="32" height="32"/>
+  <object id="365" name="wall" type="barrier" gid="134" x="512" y="480" width="32" height="32"/>
+  <object id="366" name="wall" type="barrier" gid="134" x="512" y="416" width="32" height="32"/>
+  <object id="367" name="wall" type="barrier" gid="134" x="512" y="448" width="32" height="32"/>
+  <object id="368" name="wall" type="barrier" gid="134" x="224" y="416" width="32" height="32"/>
+  <object id="369" name="wall" type="barrier" gid="134" x="224" y="448" width="32" height="32"/>
+  <object id="370" name="wall" type="barrier" gid="134" x="544" y="416" width="32" height="32"/>
+  <object id="371" name="wall" type="barrier" gid="134" x="544" y="448" width="32" height="32"/>
+  <object id="372" name="wall" type="barrier" gid="134" x="544" y="480" width="32" height="32"/>
+  <object id="373" name="wall" type="barrier" gid="134" x="576" y="480" width="32" height="32"/>
+  <object id="374" name="wall" type="barrier" gid="134" x="608" y="480" width="32" height="32"/>
+  <object id="378" name="wall" type="barrier" gid="134" x="352" y="448" width="32" height="32"/>
+  <object id="379" name="wall" type="barrier" gid="134" x="320" y="448" width="32" height="32"/>
+  <object id="380" name="wall" type="barrier" gid="134" x="416" y="448" width="32" height="32"/>
+  <object id="381" name="wall" type="barrier" gid="134" x="448" y="448" width="32" height="32"/>
+  <object id="382" name="wall" type="barrier" gid="134" x="320" y="512" width="32" height="32"/>
+  <object id="383" name="wall" type="barrier" gid="134" x="384" y="512" width="32" height="32"/>
+  <object id="384" name="wall" type="barrier" gid="134" x="288" y="512" width="32" height="32"/>
+  <object id="385" name="wall" type="barrier" gid="134" x="256" y="512" width="32" height="32"/>
+  <object id="386" name="wall" type="barrier" gid="134" x="448" y="512" width="32" height="32"/>
+  <object id="387" name="wall" type="barrier" gid="134" x="480" y="512" width="32" height="32"/>
+  <object id="388" name="wall" type="barrier" gid="134" x="512" y="512" width="32" height="32"/>
+  <object id="389" name="wall" type="barrier" gid="134" x="544" y="96" width="32" height="32"/>
+  <object id="390" name="wall" type="barrier" gid="134" x="608" y="96" width="32" height="32"/>
+  <object id="391" name="wall" type="barrier" gid="134" x="640" y="96" width="32" height="32"/>
+  <object id="392" name="wall" type="barrier" gid="134" x="672" y="96" width="32" height="32"/>
+  <object id="393" name="wall" type="barrier" gid="134" x="704" y="96" width="32" height="32"/>
+  <object id="394" name="wall" type="barrier" gid="134" x="608" y="128" width="32" height="32"/>
+  <object id="395" name="wall" type="barrier" gid="134" x="640" y="128" width="32" height="32"/>
+  <object id="396" name="wall" type="barrier" gid="134" x="672" y="128" width="32" height="32"/>
+  <object id="397" name="wall" type="barrier" gid="134" x="704" y="128" width="32" height="32"/>
+  <object id="398" name="wall" type="barrier" gid="134" x="64" y="192" width="32" height="32"/>
+  <object id="399" name="wall" type="barrier" gid="134" x="96" y="192" width="32" height="32"/>
+  <object id="400" name="wall" type="barrier" gid="134" x="128" y="192" width="32" height="32"/>
+  <object id="401" name="wall" type="barrier" gid="134" x="192" y="192" width="32" height="32"/>
+  <object id="402" name="wall" type="barrier" gid="134" x="224" y="192" width="32" height="32"/>
+  <object id="403" name="wall" type="barrier" gid="134" x="224" y="160" width="32" height="32"/>
+  <object id="404" name="wall" type="barrier" gid="134" x="544" y="160" width="32" height="32"/>
+  <object id="405" name="wall" type="barrier" gid="134" x="544" y="192" width="32" height="32"/>
+  <object id="406" name="wall" type="barrier" gid="134" x="576" y="192" width="32" height="32"/>
+  <object id="407" name="wall" type="barrier" gid="134" x="640" y="192" width="32" height="32"/>
+  <object id="408" name="wall" type="barrier" gid="134" x="672" y="192" width="32" height="32"/>
+  <object id="409" name="wall" type="barrier" gid="134" x="704" y="192" width="32" height="32"/>
+  <object id="410" name="wall" type="barrier" gid="134" x="256" y="352" width="32" height="32"/>
+  <object id="411" name="wall" type="barrier" gid="134" x="224" y="352" width="32" height="32"/>
+  <object id="412" name="wall" type="barrier" gid="134" x="192" y="352" width="32" height="32"/>
+  <object id="413" name="wall" type="barrier" gid="134" x="512" y="352" width="32" height="32"/>
+  <object id="414" name="wall" type="barrier" gid="134" x="544" y="352" width="32" height="32"/>
+  <object id="415" name="wall" type="barrier" gid="134" x="576" y="352" width="32" height="32"/>
+  <object id="416" name="wall" type="barrier" gid="134" x="192" y="256" width="32" height="32"/>
+  <object id="417" name="wall" type="barrier" gid="134" x="192" y="288" width="32" height="32"/>
+  <object id="418" name="wall" type="barrier" gid="134" x="160" y="288" width="32" height="32"/>
+  <object id="419" name="wall" type="barrier" gid="134" x="160" y="256" width="32" height="32"/>
+  <object id="420" name="wall" type="barrier" gid="134" x="576" y="288" width="32" height="32"/>
+  <object id="421" name="wall" type="barrier" gid="134" x="576" y="256" width="32" height="32"/>
+  <object id="422" name="wall" type="barrier" gid="134" x="608" y="256" width="32" height="32"/>
+  <object id="423" name="wall" type="barrier" gid="134" x="608" y="288" width="32" height="32"/>
+  <object id="424" name="wall" type="barrier" gid="134" x="672" y="224" width="32" height="32"/>
+  <object id="425" name="wall" type="barrier" gid="134" x="96" y="224" width="32" height="32"/>
+  <object id="426" name="wall" type="barrier" gid="134" x="96" y="288" width="32" height="32"/>
+  <object id="427" name="wall" type="barrier" gid="134" x="96" y="320" width="32" height="32"/>
+  <object id="428" name="wall" type="barrier" gid="134" x="64" y="352" width="32" height="32"/>
+  <object id="429" name="wall" type="barrier" gid="134" x="96" y="352" width="32" height="32"/>
+  <object id="430" name="wall" type="barrier" gid="134" x="128" y="352" width="32" height="32"/>
+  <object id="431" name="wall" type="barrier" gid="134" x="672" y="288" width="32" height="32"/>
+  <object id="432" name="wall" type="barrier" gid="134" x="672" y="320" width="32" height="32"/>
+  <object id="433" name="wall" type="barrier" gid="134" x="640" y="352" width="32" height="32"/>
+  <object id="434" name="wall" type="barrier" gid="134" x="672" y="352" width="32" height="32"/>
+  <object id="435" name="wall" type="barrier" gid="134" x="704" y="352" width="32" height="32"/>
+  <object id="436" name="wall" type="barrier" gid="134" x="736" y="288" width="32" height="32"/>
+  <object id="437" name="wall" type="barrier" gid="134" x="736" y="256" width="32" height="32"/>
+  <object id="438" name="wall" type="barrier" gid="134" x="32" y="256" width="32" height="32"/>
+  <object id="439" name="wall" type="barrier" gid="134" x="32" y="288" width="32" height="32"/>
+  <object id="440" name="wall" type="barrier" gid="134" x="160" y="416" width="32" height="32"/>
+  <object id="441" name="wall" type="barrier" gid="134" x="128" y="416" width="32" height="32"/>
+  <object id="442" name="wall" type="barrier" gid="134" x="96" y="416" width="32" height="32"/>
+  <object id="443" name="wall" type="barrier" gid="134" x="64" y="416" width="32" height="32"/>
+  <object id="444" name="wall" type="barrier" gid="134" x="608" y="416" width="32" height="32"/>
+  <object id="445" name="wall" type="barrier" gid="134" x="640" y="416" width="32" height="32"/>
+  <object id="446" name="wall" type="barrier" gid="134" x="672" y="416" width="32" height="32"/>
+  <object id="447" name="wall" type="barrier" gid="134" x="704" y="416" width="32" height="32"/>
+  <object id="448" name="wall" type="barrier" gid="134" x="672" y="480" width="32" height="32"/>
+  <object id="449" name="wall" type="barrier" gid="134" x="704" y="480" width="32" height="32"/>
+  <object id="450" name="wall" type="barrier" gid="134" x="96" y="480" width="32" height="32"/>
+  <object id="451" name="wall" type="barrier" gid="134" x="64" y="480" width="32" height="32"/>
+  <object id="452" name="wall" type="barrier" gid="134" x="32" y="544" width="32" height="32"/>
+  <object id="453" name="wall" type="barrier" gid="134" x="64" y="544" width="32" height="32"/>
+  <object id="454" name="wall" type="barrier" gid="134" x="64" y="576" width="32" height="32"/>
+  <object id="455" name="wall" type="barrier" gid="134" x="32" y="576" width="32" height="32"/>
+  <object id="456" name="wall" type="barrier" gid="134" x="32" y="608" width="32" height="32"/>
+  <object id="457" name="wall" type="barrier" gid="134" x="64" y="608" width="32" height="32"/>
+  <object id="458" name="wall" type="barrier" gid="134" x="736" y="544" width="32" height="32"/>
+  <object id="459" name="wall" type="barrier" gid="134" x="704" y="544" width="32" height="32"/>
+  <object id="460" name="wall" type="barrier" gid="134" x="704" y="576" width="32" height="32"/>
+  <object id="461" name="wall" type="barrier" gid="134" x="736" y="576" width="32" height="32"/>
+  <object id="462" name="wall" type="barrier" gid="134" x="736" y="608" width="32" height="32"/>
+  <object id="463" name="wall" type="barrier" gid="134" x="704" y="608" width="32" height="32"/>
+  <object id="464" name="wall" type="barrier" gid="134" x="640" y="544" width="32" height="32"/>
+  <object id="465" name="wall" type="barrier" gid="134" x="640" y="576" width="32" height="32"/>
+  <object id="466" name="wall" type="barrier" gid="134" x="128" y="544" width="32" height="32"/>
+  <object id="467" name="wall" type="barrier" gid="134" x="128" y="576" width="32" height="32"/>
+  <object id="468" name="wall" type="barrier" gid="134" x="160" y="544" width="32" height="32"/>
+  <object id="469" name="wall" type="barrier" gid="134" x="608" y="544" width="32" height="32"/>
+  <object id="470" name="wall" type="barrier" gid="134" x="576" y="544" width="32" height="32"/>
+  <object id="471" name="wall" type="barrier" gid="134" x="192" y="544" width="32" height="32"/>
+  <object id="472" name="wall" type="barrier" gid="134" x="192" y="576" width="32" height="32"/>
+  <object id="473" name="wall" type="barrier" gid="134" x="160" y="576" width="32" height="32"/>
+  <object id="474" name="wall" type="barrier" gid="134" x="608" y="576" width="32" height="32"/>
+  <object id="475" name="wall" type="barrier" gid="134" x="576" y="576" width="32" height="32"/>
+  <object id="476" name="wall" type="barrier" gid="134" x="512" y="576" width="32" height="32"/>
+  <object id="477" name="wall" type="barrier" gid="134" x="480" y="576" width="32" height="32"/>
+  <object id="478" name="wall" type="barrier" gid="134" x="448" y="576" width="32" height="32"/>
+  <object id="479" name="wall" type="barrier" gid="134" x="416" y="576" width="32" height="32"/>
+  <object id="480" name="wall" type="barrier" gid="134" x="352" y="576" width="32" height="32"/>
+  <object id="481" name="wall" type="barrier" gid="134" x="320" y="576" width="32" height="32"/>
+  <object id="482" name="wall" type="barrier" gid="134" x="288" y="576" width="32" height="32"/>
+  <object id="483" name="wall" type="barrier" gid="134" x="256" y="576" width="32" height="32"/>
+  <object id="817" name="door" type="barrier" gid="135" x="384" y="288" width="32" height="32"/>
+ </objectgroup>
+ <objectgroup name="spawnpoints" visible="0">
+  <object id="836" name="cookie" type="spawnpoint" gid="98" x="544" y="256" width="32" height="32"/>
+  <object id="837" name="cookie" type="spawnpoint" gid="98" x="544" y="288" width="32" height="32"/>
+  <object id="838" name="cookie" type="spawnpoint" gid="98" x="544" y="224" width="32" height="32"/>
+  <object id="839" name="cookie" type="spawnpoint" gid="98" x="576" y="224" width="32" height="32"/>
+  <object id="840" name="cookie" type="spawnpoint" gid="98" x="608" y="224" width="32" height="32"/>
+  <object id="841" name="cookie" type="spawnpoint" gid="98" x="608" y="192" width="32" height="32"/>
+  <object id="842" name="cookie" type="spawnpoint" gid="98" x="640" y="224" width="32" height="32"/>
+  <object id="843" name="cookie" type="spawnpoint" gid="98" x="640" y="256" width="32" height="32"/>
+  <object id="844" name="cookie" type="spawnpoint" gid="98" x="640" y="288" width="32" height="32"/>
+  <object id="845" name="cookie" type="spawnpoint" gid="98" x="640" y="320" width="32" height="32"/>
+  <object id="846" name="cookie" type="spawnpoint" gid="98" x="608" y="320" width="32" height="32"/>
+  <object id="847" name="cookie" type="spawnpoint" gid="98" x="576" y="320" width="32" height="32"/>
+  <object id="848" name="cookie" type="spawnpoint" gid="98" x="544" y="320" width="32" height="32"/>
+  <object id="849" name="cookie" type="spawnpoint" gid="98" x="512" y="320" width="32" height="32"/>
+  <object id="850" name="cookie" type="spawnpoint" gid="98" x="608" y="352" width="32" height="32"/>
+  <object id="851" name="cookie" type="spawnpoint" gid="98" x="608" y="384" width="32" height="32"/>
+  <object id="852" name="cookie" type="spawnpoint" gid="98" x="512" y="384" width="32" height="32"/>
+  <object id="853" name="cookie" type="spawnpoint" gid="98" x="544" y="384" width="32" height="32"/>
+  <object id="854" name="cookie" type="spawnpoint" gid="98" x="576" y="384" width="32" height="32"/>
+  <object id="855" name="cookie" type="spawnpoint" gid="98" x="576" y="416" width="32" height="32"/>
+  <object id="856" name="cookie" type="spawnpoint" gid="98" x="576" y="448" width="32" height="32"/>
+  <object id="857" name="cookie" type="spawnpoint" gid="98" x="608" y="448" width="32" height="32"/>
+  <object id="858" name="cookie" type="spawnpoint" gid="98" x="640" y="448" width="32" height="32"/>
+  <object id="859" name="cookie" type="spawnpoint" gid="98" x="672" y="448" width="32" height="32"/>
+  <object id="860" name="cookie" type="spawnpoint" gid="98" x="704" y="448" width="32" height="32"/>
+  <object id="861" name="cookie" type="spawnpoint" gid="98" x="640" y="384" width="32" height="32"/>
+  <object id="862" name="cookie" type="spawnpoint" gid="98" x="672" y="384" width="32" height="32"/>
+  <object id="863" name="cookie" type="spawnpoint" gid="98" x="704" y="384" width="32" height="32"/>
+  <object id="864" name="cookie" type="spawnpoint" gid="98" x="672" y="256" width="32" height="32"/>
+  <object id="865" name="cookie" type="spawnpoint" gid="98" x="704" y="224" width="32" height="32"/>
+  <object id="866" name="cookie" type="spawnpoint" gid="98" x="704" y="256" width="32" height="32"/>
+  <object id="867" name="cookie" type="spawnpoint" gid="98" x="704" y="288" width="32" height="32"/>
+  <object id="868" name="cookie" type="spawnpoint" gid="98" x="704" y="320" width="32" height="32"/>
+  <object id="869" name="cookie" type="spawnpoint" gid="98" x="736" y="320" width="32" height="32"/>
+  <object id="870" name="cookie" type="spawnpoint" gid="98" x="736" y="352" width="32" height="32"/>
+  <object id="871" name="cookie" type="spawnpoint" gid="98" x="736" y="384" width="32" height="32"/>
+  <object id="872" name="cookie" type="spawnpoint" gid="98" x="736" y="416" width="32" height="32"/>
+  <object id="873" name="cookie" type="spawnpoint" gid="98" x="736" y="448" width="32" height="32"/>
+  <object id="874" name="cookie" type="spawnpoint" gid="98" x="736" y="480" width="32" height="32"/>
+  <object id="875" name="cookie" type="spawnpoint" gid="98" x="736" y="512" width="32" height="32"/>
+  <object id="876" name="cookie" type="spawnpoint" gid="98" x="640" y="480" width="32" height="32"/>
+  <object id="877" name="cookie" type="spawnpoint" gid="98" x="640" y="512" width="32" height="32"/>
+  <object id="878" name="cookie" type="spawnpoint" gid="98" x="672" y="512" width="32" height="32"/>
+  <object id="879" name="cookie" type="spawnpoint" gid="98" x="704" y="512" width="32" height="32"/>
+  <object id="880" name="cookie" type="spawnpoint" gid="98" x="672" y="544" width="32" height="32"/>
+  <object id="881" name="cookie" type="spawnpoint" gid="98" x="672" y="576" width="32" height="32"/>
+  <object id="882" name="cookie" type="spawnpoint" gid="98" x="672" y="608" width="32" height="32"/>
+  <object id="883" name="cookie" type="spawnpoint" gid="98" x="608" y="512" width="32" height="32"/>
+  <object id="884" name="cookie" type="spawnpoint" gid="98" x="576" y="512" width="32" height="32"/>
+  <object id="885" name="cookie" type="spawnpoint" gid="98" x="544" y="512" width="32" height="32"/>
+  <object id="886" name="cookie" type="spawnpoint" gid="98" x="736" y="224" width="32" height="32"/>
+  <object id="887" name="cookie" type="spawnpoint" gid="98" x="736" y="192" width="32" height="32"/>
+  <object id="888" name="cookie" type="spawnpoint" gid="98" x="736" y="160" width="32" height="32"/>
+  <object id="889" name="cookie" type="spawnpoint" gid="98" x="736" y="128" width="32" height="32"/>
+  <object id="890" name="cookie" type="spawnpoint" gid="98" x="736" y="96" width="32" height="32"/>
+  <object id="891" name="cookie" type="spawnpoint" gid="98" x="736" y="64" width="32" height="32"/>
+  <object id="892" name="cookie" type="spawnpoint" gid="98" x="416" y="64" width="32" height="32"/>
+  <object id="893" name="cookie" type="spawnpoint" gid="98" x="416" y="96" width="32" height="32"/>
+  <object id="894" name="cookie" type="spawnpoint" gid="98" x="416" y="128" width="32" height="32"/>
+  <object id="895" name="cookie" type="spawnpoint" gid="98" x="448" y="64" width="32" height="32"/>
+  <object id="896" name="cookie" type="spawnpoint" gid="98" x="480" y="64" width="32" height="32"/>
+  <object id="897" name="cookie" type="spawnpoint" gid="98" x="512" y="64" width="32" height="32"/>
+  <object id="898" name="cookie" type="spawnpoint" gid="98" x="544" y="64" width="32" height="32"/>
+  <object id="899" name="cookie" type="spawnpoint" gid="98" x="576" y="64" width="32" height="32"/>
+  <object id="900" name="cookie" type="spawnpoint" gid="98" x="608" y="64" width="32" height="32"/>
+  <object id="901" name="cookie" type="spawnpoint" gid="98" x="640" y="64" width="32" height="32"/>
+  <object id="902" name="cookie" type="spawnpoint" gid="98" x="672" y="64" width="32" height="32"/>
+  <object id="903" name="cookie" type="spawnpoint" gid="98" x="704" y="64" width="32" height="32"/>
+  <object id="904" name="cookie" type="spawnpoint" gid="98" x="576" y="96" width="32" height="32"/>
+  <object id="905" name="cookie" type="spawnpoint" gid="98" x="576" y="128" width="32" height="32"/>
+  <object id="906" name="cookie" type="spawnpoint" gid="98" x="576" y="160" width="32" height="32"/>
+  <object id="907" name="cookie" type="spawnpoint" gid="98" x="608" y="160" width="32" height="32"/>
+  <object id="908" name="cookie" type="spawnpoint" gid="98" x="640" y="160" width="32" height="32"/>
+  <object id="909" name="cookie" type="spawnpoint" gid="98" x="672" y="160" width="32" height="32"/>
+  <object id="910" name="cookie" type="spawnpoint" gid="98" x="704" y="160" width="32" height="32"/>
+  <object id="911" name="cookie" type="spawnpoint" gid="98" x="544" y="128" width="32" height="32"/>
+  <object id="912" name="cookie" type="spawnpoint" gid="98" x="512" y="128" width="32" height="32"/>
+  <object id="913" name="cookie" type="spawnpoint" gid="98" x="480" y="128" width="32" height="32"/>
+  <object id="914" name="cookie" type="spawnpoint" gid="98" x="448" y="128" width="32" height="32"/>
+  <object id="915" name="cookie" type="spawnpoint" gid="98" x="480" y="160" width="32" height="32"/>
+  <object id="916" name="cookie" type="spawnpoint" gid="98" x="480" y="192" width="32" height="32"/>
+  <object id="917" name="cookie" type="spawnpoint" gid="98" x="416" y="192" width="32" height="32"/>
+  <object id="918" name="cookie" type="spawnpoint" gid="98" x="416" y="224" width="32" height="32"/>
+  <object id="919" name="cookie" type="spawnpoint" gid="98" x="448" y="192" width="32" height="32"/>
+  <object id="920" name="cookie" type="spawnpoint" gid="98" x="352" y="224" width="32" height="32"/>
+  <object id="921" name="cookie" type="spawnpoint" gid="98" x="352" y="192" width="32" height="32"/>
+  <object id="922" name="cookie" type="spawnpoint" gid="98" x="320" y="192" width="32" height="32"/>
+  <object id="923" name="cookie" type="spawnpoint" gid="98" x="288" y="192" width="32" height="32"/>
+  <object id="924" name="cookie" type="spawnpoint" gid="98" x="288" y="160" width="32" height="32"/>
+  <object id="925" name="cookie" type="spawnpoint" gid="98" x="288" y="128" width="32" height="32"/>
+  <object id="926" name="cookie" type="spawnpoint" gid="98" x="320" y="128" width="32" height="32"/>
+  <object id="927" name="cookie" type="spawnpoint" gid="98" x="352" y="128" width="32" height="32"/>
+  <object id="928" name="cookie" type="spawnpoint" gid="98" x="384" y="128" width="32" height="32"/>
+  <object id="929" name="cookie" type="spawnpoint" gid="98" x="352" y="96" width="32" height="32"/>
+  <object id="930" name="cookie" type="spawnpoint" gid="98" x="352" y="64" width="32" height="32"/>
+  <object id="931" name="cookie" type="spawnpoint" gid="98" x="480" y="416" width="32" height="32"/>
+  <object id="932" name="cookie" type="spawnpoint" gid="98" x="480" y="448" width="32" height="32"/>
+  <object id="933" name="cookie" type="spawnpoint" gid="98" x="480" y="480" width="32" height="32"/>
+  <object id="934" name="cookie" type="spawnpoint" gid="98" x="416" y="480" width="32" height="32"/>
+  <object id="935" name="cookie" type="spawnpoint" gid="98" x="448" y="480" width="32" height="32"/>
+  <object id="936" name="cookie" type="spawnpoint" gid="98" x="416" y="512" width="32" height="32"/>
+  <object id="937" name="cookie" type="spawnpoint" gid="98" x="416" y="544" width="32" height="32"/>
+  <object id="938" name="cookie" type="spawnpoint" gid="98" x="448" y="544" width="32" height="32"/>
+  <object id="939" name="cookie" type="spawnpoint" gid="98" x="480" y="544" width="32" height="32"/>
+  <object id="940" name="cookie" type="spawnpoint" gid="98" x="512" y="544" width="32" height="32"/>
+  <object id="941" name="cookie" type="spawnpoint" gid="98" x="544" y="544" width="32" height="32"/>
+  <object id="942" name="cookie" type="spawnpoint" gid="98" x="544" y="576" width="32" height="32"/>
+  <object id="943" name="cookie" type="spawnpoint" gid="98" x="544" y="608" width="32" height="32"/>
+  <object id="944" name="cookie" type="spawnpoint" gid="98" x="576" y="608" width="32" height="32"/>
+  <object id="945" name="cookie" type="spawnpoint" gid="98" x="608" y="608" width="32" height="32"/>
+  <object id="946" name="cookie" type="spawnpoint" gid="98" x="640" y="608" width="32" height="32"/>
+  <object id="947" name="cookie" type="spawnpoint" gid="98" x="512" y="608" width="32" height="32"/>
+  <object id="948" name="cookie" type="spawnpoint" gid="98" x="480" y="608" width="32" height="32"/>
+  <object id="949" name="cookie" type="spawnpoint" gid="98" x="448" y="608" width="32" height="32"/>
+  <object id="950" name="cookie" type="spawnpoint" gid="98" x="416" y="608" width="32" height="32"/>
+  <object id="951" name="cookie" type="spawnpoint" gid="98" x="384" y="608" width="32" height="32"/>
+  <object id="952" name="cookie" type="spawnpoint" gid="98" x="384" y="576" width="32" height="32"/>
+  <object id="953" name="cookie" type="spawnpoint" gid="98" x="384" y="544" width="32" height="32"/>
+  <object id="954" name="cookie" type="spawnpoint" gid="98" x="288" y="416" width="32" height="32"/>
+  <object id="955" name="cookie" type="spawnpoint" gid="98" x="288" y="448" width="32" height="32"/>
+  <object id="956" name="cookie" type="spawnpoint" gid="98" x="288" y="480" width="32" height="32"/>
+  <object id="957" name="cookie" type="spawnpoint" gid="98" x="320" y="480" width="32" height="32"/>
+  <object id="958" name="cookie" type="spawnpoint" gid="98" x="352" y="480" width="32" height="32"/>
+  <object id="959" name="cookie" type="spawnpoint" gid="98" x="352" y="512" width="32" height="32"/>
+  <object id="960" name="cookie" type="spawnpoint" gid="98" x="352" y="544" width="32" height="32"/>
+  <object id="961" name="cookie" type="spawnpoint" gid="98" x="256" y="544" width="32" height="32"/>
+  <object id="962" name="cookie" type="spawnpoint" gid="98" x="288" y="544" width="32" height="32"/>
+  <object id="963" name="cookie" type="spawnpoint" gid="98" x="320" y="544" width="32" height="32"/>
+  <object id="964" name="cookie" type="spawnpoint" gid="98" x="352" y="608" width="32" height="32"/>
+  <object id="965" name="cookie" type="spawnpoint" gid="98" x="320" y="608" width="32" height="32"/>
+  <object id="966" name="cookie" type="spawnpoint" gid="98" x="288" y="608" width="32" height="32"/>
+  <object id="967" name="cookie" type="spawnpoint" gid="98" x="256" y="608" width="32" height="32"/>
+  <object id="968" name="cookie" type="spawnpoint" gid="98" x="224" y="512" width="32" height="32"/>
+  <object id="969" name="cookie" type="spawnpoint" gid="98" x="224" y="544" width="32" height="32"/>
+  <object id="970" name="cookie" type="spawnpoint" gid="98" x="224" y="576" width="32" height="32"/>
+  <object id="971" name="cookie" type="spawnpoint" gid="98" x="224" y="608" width="32" height="32"/>
+  <object id="972" name="cookie" type="spawnpoint" gid="98" x="256" y="384" width="32" height="32"/>
+  <object id="973" name="cookie" type="spawnpoint" gid="98" x="224" y="384" width="32" height="32"/>
+  <object id="974" name="cookie" type="spawnpoint" gid="98" x="192" y="384" width="32" height="32"/>
+  <object id="975" name="cookie" type="spawnpoint" gid="98" x="192" y="416" width="32" height="32"/>
+  <object id="976" name="cookie" type="spawnpoint" gid="98" x="192" y="448" width="32" height="32"/>
+  <object id="977" name="cookie" type="spawnpoint" gid="98" x="32" y="448" width="32" height="32"/>
+  <object id="978" name="cookie" type="spawnpoint" gid="98" x="64" y="448" width="32" height="32"/>
+  <object id="979" name="cookie" type="spawnpoint" gid="98" x="96" y="448" width="32" height="32"/>
+  <object id="980" name="cookie" type="spawnpoint" gid="98" x="128" y="448" width="32" height="32"/>
+  <object id="981" name="cookie" type="spawnpoint" gid="98" x="160" y="448" width="32" height="32"/>
+  <object id="982" name="cookie" type="spawnpoint" gid="98" x="128" y="480" width="32" height="32"/>
+  <object id="983" name="cookie" type="spawnpoint" gid="98" x="128" y="512" width="32" height="32"/>
+  <object id="984" name="cookie" type="spawnpoint" gid="98" x="160" y="512" width="32" height="32"/>
+  <object id="985" name="cookie" type="spawnpoint" gid="98" x="192" y="512" width="32" height="32"/>
+  <object id="986" name="cookie" type="spawnpoint" gid="98" x="192" y="608" width="32" height="32"/>
+  <object id="987" name="cookie" type="spawnpoint" gid="98" x="160" y="608" width="32" height="32"/>
+  <object id="988" name="cookie" type="spawnpoint" gid="98" x="128" y="608" width="32" height="32"/>
+  <object id="989" name="cookie" type="spawnpoint" gid="98" x="96" y="608" width="32" height="32"/>
+  <object id="990" name="cookie" type="spawnpoint" gid="98" x="96" y="576" width="32" height="32"/>
+  <object id="991" name="cookie" type="spawnpoint" gid="98" x="96" y="544" width="32" height="32"/>
+  <object id="992" name="cookie" type="spawnpoint" gid="98" x="96" y="512" width="32" height="32"/>
+  <object id="993" name="cookie" type="spawnpoint" gid="98" x="64" y="512" width="32" height="32"/>
+  <object id="994" name="cookie" type="spawnpoint" gid="98" x="32" y="512" width="32" height="32"/>
+  <object id="995" name="cookie" type="spawnpoint" gid="98" x="32" y="480" width="32" height="32"/>
+  <object id="996" name="cookie" type="spawnpoint" gid="98" x="160" y="384" width="32" height="32"/>
+  <object id="997" name="cookie" type="spawnpoint" gid="98" x="128" y="384" width="32" height="32"/>
+  <object id="998" name="cookie" type="spawnpoint" gid="98" x="96" y="384" width="32" height="32"/>
+  <object id="999" name="cookie" type="spawnpoint" gid="98" x="64" y="384" width="32" height="32"/>
+  <object id="1000" name="cookie" type="spawnpoint" gid="98" x="32" y="384" width="32" height="32"/>
+  <object id="1001" name="cookie" type="spawnpoint" gid="98" x="32" y="416" width="32" height="32"/>
+  <object id="1002" name="cookie" type="spawnpoint" gid="98" x="32" y="352" width="32" height="32"/>
+  <object id="1003" name="cookie" type="spawnpoint" gid="98" x="32" y="320" width="32" height="32"/>
+  <object id="1004" name="cookie" type="spawnpoint" gid="98" x="64" y="320" width="32" height="32"/>
+  <object id="1005" name="cookie" type="spawnpoint" gid="98" x="64" y="288" width="32" height="32"/>
+  <object id="1006" name="cookie" type="spawnpoint" gid="98" x="160" y="352" width="32" height="32"/>
+  <object id="1007" name="cookie" type="spawnpoint" gid="98" x="160" y="320" width="32" height="32"/>
+  <object id="1008" name="cookie" type="spawnpoint" gid="98" x="192" y="320" width="32" height="32"/>
+  <object id="1009" name="cookie" type="spawnpoint" gid="98" x="224" y="320" width="32" height="32"/>
+  <object id="1010" name="cookie" type="spawnpoint" gid="98" x="256" y="320" width="32" height="32"/>
+  <object id="1011" name="cookie" type="spawnpoint" gid="98" x="224" y="288" width="32" height="32"/>
+  <object id="1012" name="cookie" type="spawnpoint" gid="98" x="224" y="256" width="32" height="32"/>
+  <object id="1013" name="cookie" type="spawnpoint" gid="98" x="224" y="224" width="32" height="32"/>
+  <object id="1014" name="cookie" type="spawnpoint" gid="98" x="128" y="224" width="32" height="32"/>
+  <object id="1015" name="cookie" type="spawnpoint" gid="98" x="128" y="256" width="32" height="32"/>
+  <object id="1016" name="cookie" type="spawnpoint" gid="98" x="128" y="288" width="32" height="32"/>
+  <object id="1017" name="cookie" type="spawnpoint" gid="98" x="128" y="320" width="32" height="32"/>
+  <object id="1018" name="cookie" type="spawnpoint" gid="98" x="160" y="224" width="32" height="32"/>
+  <object id="1019" name="cookie" type="spawnpoint" gid="98" x="192" y="224" width="32" height="32"/>
+  <object id="1020" name="cookie" type="spawnpoint" gid="98" x="96" y="256" width="32" height="32"/>
+  <object id="1021" name="cookie" type="spawnpoint" gid="98" x="64" y="256" width="32" height="32"/>
+  <object id="1022" name="cookie" type="spawnpoint" gid="98" x="64" y="224" width="32" height="32"/>
+  <object id="1023" name="cookie" type="spawnpoint" gid="98" x="32" y="224" width="32" height="32"/>
+  <object id="1024" name="cookie" type="spawnpoint" gid="98" x="32" y="192" width="32" height="32"/>
+  <object id="1025" name="cookie" type="spawnpoint" gid="98" x="32" y="160" width="32" height="32"/>
+  <object id="1026" name="cookie" type="spawnpoint" gid="98" x="64" y="160" width="32" height="32"/>
+  <object id="1027" name="cookie" type="spawnpoint" gid="98" x="96" y="160" width="32" height="32"/>
+  <object id="1028" name="cookie" type="spawnpoint" gid="98" x="128" y="160" width="32" height="32"/>
+  <object id="1029" name="cookie" type="spawnpoint" gid="98" x="160" y="160" width="32" height="32"/>
+  <object id="1030" name="cookie" type="spawnpoint" gid="98" x="192" y="160" width="32" height="32"/>
+  <object id="1031" name="cookie" type="spawnpoint" gid="98" x="160" y="192" width="32" height="32"/>
+  <object id="1032" name="cookie" type="spawnpoint" gid="98" x="192" y="128" width="32" height="32"/>
+  <object id="1033" name="cookie" type="spawnpoint" gid="98" x="224" y="128" width="32" height="32"/>
+  <object id="1034" name="cookie" type="spawnpoint" gid="98" x="256" y="128" width="32" height="32"/>
+  <object id="1035" name="cookie" type="spawnpoint" gid="98" x="32" y="64" width="32" height="32"/>
+  <object id="1036" name="cookie" type="spawnpoint" gid="98" x="32" y="96" width="32" height="32"/>
+  <object id="1037" name="cookie" type="spawnpoint" gid="98" x="32" y="128" width="32" height="32"/>
+  <object id="1038" name="cookie" type="spawnpoint" gid="98" x="64" y="64" width="32" height="32"/>
+  <object id="1039" name="cookie" type="spawnpoint" gid="98" x="96" y="64" width="32" height="32"/>
+  <object id="1040" name="cookie" type="spawnpoint" gid="98" x="128" y="64" width="32" height="32"/>
+  <object id="1041" name="cookie" type="spawnpoint" gid="98" x="160" y="64" width="32" height="32"/>
+  <object id="1042" name="cookie" type="spawnpoint" gid="98" x="192" y="64" width="32" height="32"/>
+  <object id="1043" name="cookie" type="spawnpoint" gid="98" x="192" y="96" width="32" height="32"/>
+  <object id="1044" name="cookie" type="spawnpoint" gid="98" x="224" y="64" width="32" height="32"/>
+  <object id="1045" name="cookie" type="spawnpoint" gid="98" x="256" y="64" width="32" height="32"/>
+  <object id="1046" name="cookie" type="spawnpoint" gid="98" x="288" y="64" width="32" height="32"/>
+  <object id="1047" name="cookie" type="spawnpoint" gid="98" x="320" y="64" width="32" height="32"/>
+  <object id="1048" name="player" type="spawnpoint" gid="98" x="384" y="544" width="32" height="32"/>
+  <object id="1049" name="ghost" type="spawnpoint" gid="98" x="352" y="320" width="32" height="32"/>
+  <object id="1050" name="ghost" type="spawnpoint" gid="98" x="384" y="320" width="32" height="32"/>
+  <object id="1051" name="ghost" type="spawnpoint" gid="98" x="416" y="320" width="32" height="32"/>
+ </objectgroup>
+ <objectgroup name="objects">
+  <object id="1057" gid="1" x="352" y="320" width="32" height="32"/>
+  <object id="1058" gid="11" x="384" y="320" width="32" height="32"/>
+  <object id="1059" gid="22" x="416" y="320" width="32" height="32"/>
+ </objectgroup>
+</map>

@@ -1,0 +1,94 @@
+.fc-right 
+{
+    display: none;
+}
+
+.fc-center 
+{
+    float: right;
+    margin-top: 0.3em;
+    color: red;
+}
+
+.fc-center > h2 
+{
+    width: 100%;
+}
+
+.fc-toolbar button 
+{
+    position: static;
+}
+
+.fc button .fc-icon 
+{
+    position: static;
+}
+
+.fc-icon::after 
+{
+    position: static;
+}
+
+.fc-state-disabled 
+{
+    opacity: 1;
+}
+
+.fc button::-moz-focus-inner 
+{
+    margin-top: -0.2em;
+}
+
+/* SCHEDULE WINDOW */
+
+.fc-scroller 
+{
+    height: 40em !important;
+}
+
+.fc-scroller > .fc-day-grid, .fc-scroller > .fc-time-grid 
+{
+    position: static;
+}
+
+.fc-view > table 
+{
+    position: static;
+}
+
+.fc-view 
+{
+    position: static;
+}
+
+.fc-row 
+{
+    display: none;
+    position: static;
+}
+
+.fc-list-empty-wrap2 
+{
+    position: static;
+    width: 100%;
+    height: 100%;
+}
+
+.fc-unthemed td.fc-today 
+{
+    background: #FFFFFF;
+}
+
+tr > td > a 
+{
+    pointer-events: none;
+}
+
+.fc-center > h2
+{
+  display: none !important;
+}
+
+
+

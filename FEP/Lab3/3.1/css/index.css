@@ -1,0 +1,298 @@
+*
+{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: none;
+    text-decoration: none;
+    font-size: 14px;
+    color: #000000;
+    word-wrap: break-word;
+    box-sizing: border-box;
+}
+
+html
+{
+    background: #e1e1e1;
+}
+
+a
+{
+    color: #00757c;
+    word-wrap: normal;
+}
+
+hr
+{
+    width: 100%;
+    height: 1px;
+    clear: both;
+    margin-top: 2px;
+    margin-bottom: 5px;
+    background-color: #00757c;
+}
+
+.main
+{
+    max-width: 1280px;
+    margin: auto;
+}
+
+.header
+{
+    top: 0;
+    min-width: 1280px;
+    height: 45px;
+    background: #148990;
+}
+
+.logo_wrapper
+{
+    float: left;
+    margin-left: 15px;
+    margin-top: 2px;
+}
+
+.volgatech_icon
+{
+    width: 40px;
+    height: 40px;
+}
+
+.search_wrapper
+{
+    height: 45px;
+    float: right;
+    margin-right: 15px;
+}
+
+.search
+{
+    height: 30px;
+    float: left;
+    margin-top: 8px;
+    border-radius: 2px;
+    text-align: center;
+}
+
+.main_wrapper
+{
+    margin-top: 4px;
+    min-width: 1280px;
+}
+
+.main_block
+{
+    display: inline-block;
+    float: left;
+    padding-left: 2px;
+    padding-right: 2px;
+    padding-bottom: 2px;
+}
+
+.left_wrapper
+{
+    width: 255px;
+    
+}
+
+.center_wrapper
+{
+    width: 598px;
+}
+
+.right_wrapper
+{
+    width: 426px;
+    float: right;
+}
+
+.photo_wrapper
+{
+    border: 1px solid #d2d2d2;
+    border-radius: 1px;
+    background: #f8f8f8;
+}
+
+.photo_image
+{
+    width: 100%;
+}
+
+.content_wrapper
+{
+    background: #ffffff;
+    border: 1px solid #d2d2d2;
+    border-radius: 2px;
+    padding: 8px;
+}
+
+.button_wrapper
+{
+    margin-top: 3px;
+}
+
+.buttons
+{
+    padding: 10px;
+    border-radius: 2px;
+    margin-top: 5px;
+    background: #148990;
+    color: #ffffff;
+    text-align: center;
+}
+
+.friend_button
+{
+    background: green;
+    color: #ffffff;
+}
+
+.buttons > a > p
+{
+    color: #ffffff;
+    word-wrap: normal;
+}
+
+.main_title
+{
+    display: inline-block;
+    width: 100%;
+    font-size: 24px;
+    text-align: center;
+    padding: 10px;
+}
+
+.about_student_wrapper
+{
+    padding: 15px;
+    background: #f8f8f8;
+}
+
+.about_text
+{
+    padding: 5px;
+}
+
+.course_wrapper
+{
+    margin-top: 10px;
+    background: #f8f8f8;
+}
+
+.course_block
+{
+    height: 100px;
+    margin: 5px;
+    border: 1px solid #a0a0a0;
+    border-radius: 2px;
+}
+
+.course_link
+{
+    position: relative;
+    display: block;
+    color: #ffffff;
+}
+
+.course_text
+{
+    position: absolute;
+    width: 100%;
+    height: 98px;
+    padding: 5px;
+    text-align: center;
+    background: rgba(150, 150, 150, 0.6);
+}
+
+.course_text > h3
+{
+    margin-top: 20px;
+    word-wrap: normal;
+    font-size: 20px;
+    color: #ffffff;
+    text-shadow: 0 0 4px #000000;
+    word-wrap: normal;
+}
+
+.film_block
+{
+    height: 600px;
+    padding: 30px;
+    padding-top: 20px;
+    background: #f8f8f8;
+}
+
+.film_block blockquote:nth-child(even)
+{
+    color: red;
+}
+
+.film_block blockquote:nth-child(odd)
+{
+    color: blue;
+}
+
+blockquote
+{
+    font-size: 20px;
+}
+
+li {
+    margin-top: 5px;
+}
+
+.footer
+{
+    display: inline-block;
+    width: 595px;
+    margin-left: 256px;
+}
+
+.footer_wrapper
+{
+    padding: 10px;
+    background: #148990;
+    border: 1px solid #00757c;
+    border-radius: 2px 2px 0 0;
+    font-size: 12px;
+    background: #148990;
+}
+
+.footer_link_wrapper
+{
+    display: inline-block;
+    width: 100%;
+}
+
+.footer_link_block
+{
+    min-width: 50%;
+    height: 100%;
+    float: left;
+}
+
+.footer_link
+{
+    margin-left: 100px;
+    color: #ffffff;
+    font-size: 14px;
+}
+
+.footer_link:hover
+{
+    text-decoration: underline;
+}
+
+.copyright_wrapper
+{
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+}
+
+.copyright
+{
+    color: #ffffff;
+    font-size: 10px;
+}

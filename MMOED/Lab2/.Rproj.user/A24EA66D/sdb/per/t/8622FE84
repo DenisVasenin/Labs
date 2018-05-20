@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "---\noutput:\n  pdf_document: default\nheader-includes:\n \\usepackage[T2A]{fontenc}\n \\usepackage[utf8]{inputenc}\n \\usepackage[russian]{babel}\n---\n\n```{r setup, include=FALSE}\nknitr::opts_chunk$set(echo = TRUE)\n```\n\n\\centering\\Large \nИнтервальное оценивание.\n\n\\centering\\large \nПенкин С.В. ИВТ-21\n\n\\centering\\large \nВариант 28\n\n\\raggedright\\large \nЗадание:\n\n\\raggedright\\normalsize \nПостроить интервальные оценки генерального среднего и генеральной дисперсии по выборочным данным своего варианта ИР-1. Закон распределения - нормальный.\n\n\\raggedright\\large \nЗададим выборку:\n\\raggedright\\normalsize\n\n```{r, message=FALSE, warning=FALSE}\n\ndata = c(324,296,313,323,312,321,322,301,337,322,301,328,312,318,327,315,319,317,309,334,\n326,322,314,335,313,322,319,325,312,300,339,328,298,298,337,322,303,314,315,310,\n312,315,331,322,321,336,328,315,338,318,325,314,297,303,322,314,317,330,318,320,\n332,319,325,319,307,305,316,330,318,335,332,288,322,334,295,318,329,305,310,304,\n317,316,316,307,309,309,328,317,317,322,303,350,309,327,345,329,338,311,316,324)\n\nplot(density(data), main = \"\", sub = \"\", xlab = \"\")\n# Параметры для расчетов\nn = 100\ny = 0.95                                            \n```\n\n***\n\n\\centering\\large\nИнтервальная оценка генерального среднего:\n\n\\raggedright\\normalsize \n$(\\bar x - \\frac {t_\\gamma * s}{\\sqrt{n}})  <    X    <  (\\bar x + \\frac {t_\\gamma * s}{\\sqrt{n}})$ , где\n\n$\\bar x$ - выборочное среднее\n\ns - выборочное стандартное отклонение\n\nn - обьем выборки\n\n$t_\\gamma$ - 1.984 (по таблице)\n\n```{r, message=FALSE, warning=FALSE}\nt = 1.984\n# найдем выборочное стандартное отклонение\ns = sd(data)            \ns\n# найдем выборочное среднее\nx = mean(data)                                                 \nx\n# найдем левую границу интервала\nx - (t * s) / sqrt(n)\n# найдем правую границу интервала\nx + (t * s) / sqrt(n)                               \n```\n\n\\centering\\normalsize\nДоверительный интервал: 316.1983 < X < 320.8417 \n\n***\n\n\\centering\\large\nИнтервальная оценка генеральной дисперсии:\n\n\\raggedright\\normalsize \n$(\\sigma * (1 - q))^2 < D < (\\sigma * (1 + q))^2$, при q < 1\n\n0 < D < $(\\sigma * (1 + q))^2$, при q > 1\n\n$\\sigma$ - выборочное среднеквадратическое отклонение\n\nq - 0.143 (по таблице)\n\n```{r, message=FALSE, warning=FALSE}\nq = 0.143\n# найдем выборочное среднеквадр. отклонение\nv = sd(data)\n# найдем левую границу интервала\n(v * (1 - q)) ^ 2                                           \n# найдем правую границу интервала\n(v * (1 + q)) ^ 2                           \n```\n\n\\centering\\normalsize\nДоверительный интервал: 100.5747 < D < 178.9038",
+    "created" : 1482871183911.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1305652468",
+    "id" : "8622FE84",
+    "lastKnownWriteTime" : 1482925226,
+    "last_content_update" : 1482925226991,
+    "path" : "~/Documents/Programs/R/MMOED/Project_2/Project_2.Rmd",
+    "project_path" : "Project_2.Rmd",
+    "properties" : {
+        "docOutlineVisible" : "0",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

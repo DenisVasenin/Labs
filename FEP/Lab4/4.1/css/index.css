@@ -1,0 +1,371 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:400,700');
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700');
+
+/*
+font-family: 'Lato', sans-serif;
+font-family: 'Source Sans Pro', sans-serif;
+#17a78b    зеленый
+#1abb9c    светло зеленый
+#f5f7fa    серый хидер
+#ebebeb    серый бордер хидера
+#506a85    темно синий
+#2F4052    темно-темно футер
+#73879C    темно серый шрифт
+*/
+
+*
+{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: none;
+    text-decoration: none;
+    list-style-type: none;
+    font-size: 10px;
+    color: #000000;
+    word-wrap: break-word;
+    box-sizing: border-box;
+}
+
+html
+{
+    background: #ebebeb;
+}
+
+.page_wrapper
+{
+    max-width: 1920px;
+    margin: auto;
+}
+
+.content_container
+{
+    max-width: 1170px;
+    height: 100%;
+    margin: auto;
+}
+
+.clear
+{
+    clear: both;
+}
+
+/* --------------------------- HEADER SECTION --------------------------- */
+
+/*--------------------------- header contact bar -------------------------*/
+
+.header_links_bar
+{
+    height: 41px;
+    border-bottom: 1px solid #ebebeb;
+    background: #f5f7fa;
+}
+
+.header_wrapper
+{
+    display: table;
+    height: 100%;
+}
+
+.header_contact_wrapper
+{
+    float: left;
+}
+
+.header_contact_separator
+{
+    width: 25px;
+}
+
+.header_contact_link
+{
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.header_contact_icon
+{
+    float: left;
+}
+
+.header_contact_link > p
+{
+    float: left;
+    margin-top: -1px;
+    margin-left: 8px;
+    font: 12px 'Source Sans Pro',sans-serif;
+    color: #506a85;
+}
+
+.header_social_wrapper
+{
+    float: right;
+}
+
+.header_social_link
+{
+    display: table-cell;
+    vertical-align: middle;
+    padding-left: 9px;
+    padding-right: 9px;
+}
+
+/* -------------------------header navigation bar--------------------------- */
+
+.header_navigation_bar
+{
+    position: static;
+    width: 100%;
+    max-width: 1920px;
+    height: 112px;
+    min-height: 50px;
+    max-height: 112px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #ebebeb;
+    background: #ffffff;
+    z-index: 9999 !important;
+}
+
+.header_navigation_wrapper
+{
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.site_logo
+{
+    display: block;
+    height: 40px;
+    
+}
+
+.site_logo:hover
+{
+    opacity: 0.6;
+}
+
+.header_navigation_separator
+{
+    width: 68px;
+}
+
+.header_navigation_menu_button
+{
+    height: 100%;
+    padding: 15px 20px;
+    float: left;
+    font: bold 15px 'Source Sans Pro', sans-serif;
+    color: #506a85;
+    text-transform: uppercase;
+    border: solid #ffffff;
+    border-width: 1px 1px 0px 1px;
+}
+
+.header_navigation_menu_button:hover
+{
+    background: #f5f7fa;
+    border-width: 1px 1px 0px 1px;
+    border-radius: 3px 3px 0px 0px;
+    border-color: #ebebeb;
+}
+
+.header_navigation_menu_button:hover , .mail_contact:hover > div > i::before , .mail_contact:hover > p , .header_dropdown_menu_button:hover
+{
+    color: #1abb9c;
+}
+
+/*----------------------------- MAIN SECTION -------------------------------*/
+
+.main_block
+{
+    width: 100%;
+    padding-bottom: 118px;
+}
+
+.odd
+{
+    background: #ffffff;
+}
+
+.even
+{
+    background: #f5f7fa;
+}
+
+.main_title_wrapper
+{
+    width: 100%;
+    text-align: center;
+    padding-top: 84px;
+    padding-bottom: 80px;
+}
+
+.big_title_text
+{
+    width: 66%;
+    margin: auto;
+    padding-bottom: 25px;
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    font-size: 44px;
+    color: #506a85;
+    line-height: 130%;
+}
+
+.subtitle_text
+{
+    width: 66%;
+    margin: auto;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 22px;
+    color: #73879c;
+    line-height: 150%;
+}
+
+.small_text
+{
+    font-family: 'Source Sans Pro',sans-serif;
+    font-size: 16px;
+    line-height: 160%;
+    color: #73879c;
+}
+
+/* -------------------------main first block--------------------------- */
+
+.main_first_content_wrapper
+{
+    display: table;
+    width: 100%;
+}
+
+.main_first_content_block
+{
+    display: table-cell;
+    width: 33.333%;
+}
+
+.main_first_icon_block
+{
+    width: 65px;
+    float: left;
+    text-align: center;
+}
+
+.main_first_text_block
+{
+    width: calc(100% - 85px);
+    float: left;
+    padding-left: 32px;
+}
+
+.main_first_icon_block > i::before
+{
+    font-size: 64px;
+    color: #17a78b;
+}
+
+.small_title_text
+{
+    padding-bottom: 20px;
+    font-family: 'Lato',sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 130%;
+    color: #506a85;
+    display: table-caption;
+}
+
+.main_first_content_separator
+{
+    width: 20px;
+    float: left;
+}
+
+/* -------------------------main second block--------------------------- */
+
+.main_second_content_wrapper
+{
+    display: block;
+    width: 100%;
+    padding-bottom: 80px;
+}
+
+.main_second_content_wrapper div:nth-child(1)
+{
+  float: left;
+}
+
+.main_second_content_wrapper div:nth-child(2)
+{
+  float: right;
+}
+
+.main_second_content_separator
+{
+    
+    width: 10px;
+}
+
+/* -------------------------main third block--------------------------- */
+
+.main_third_button
+{
+    display: block;
+    width: 150px;
+    height: 50px;
+    padding: 14px 26px 16px;
+    margin: auto;
+    margin-top: 40px;
+    border-radius: 3px;
+    font-family: 'Source Sans Pro',sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    color: #ffffff;
+    text-align: center;
+    vertical-align: middle;
+    background: #1abb9c;
+}
+
+.main_third_button:hover
+{
+    background: #17a78b;
+}
+
+/*---------------------------- FOOTER SECTION -------------------------------*/
+
+.footer_content_wrapper
+{
+    width: 100%;
+    height: 355px;
+    background: #2F4052;
+}
+
+.footer_copyright_wrapper
+{
+    width: 100%;
+    height: 82px;
+    background: #283645;
+}
+
+.scroll_up_button
+{
+    display: none;
+    position: fixed;
+    width: 40px;
+    height: 40px;
+    right: 20px;
+    bottom: 20px;
+    z-index: 9999;
+    border-radius: 3px;
+    background: url(../images/footer/arrow_up.png);
+    background-color: #3f556c;
+    background-size: cover;
+}
+
+.scroll_up_button:hover
+{
+    background: url(../images/footer/arrow_up_hover.png);
+    background-color: #506a85;
+    background-size: cover;
+}

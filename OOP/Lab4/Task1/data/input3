@@ -1,0 +1,6 @@
+cone cone1 = 2 2 2
+cone cone2 = 4 2 2
+cone cone3 = 6 2 2
+compound compound1 = cone1
+compound compound2 = cone1 cone2
+compound compound3 = cone1 cone2 cone3

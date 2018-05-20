@@ -1,0 +1,7 @@
+cone cone1 = 5 8 3
+sphere sphere1 = 4 1
+compound compound1 = sphere1 cone1
+paralellepiped paralellepiped1 = 8 1 2 3
+sphere sphere2 = 5 12
+compound compound2 = compound1 sphere2
+cylinder cylinder1 = 15 1 4
